@@ -1,0 +1,10 @@
+co\unicauca\apptimarket\server\access\Factory.class
+co\unicauca\apptimarket\server\access\IProductRepository.class
+co\unicauca\apptimarket\server\access\ProductRepositoryImplArrays.class
+co\unicauca\apptimarket\server\infra\ApptiMarketServer3.class
+co\unicauca\apptimarket\server\app\AgenciaViajesApplication.class
+co\unicauca\apptimarket\server\infra\ApptiMarketServer.class
+co\unicauca\apptimarket\server\domain\services\ProductService.class
+co\unicauca\apptimarket\server\infra\ApptiMarketServer2.class
+co\unicauca\apptimarket\server\infra\ApptiMarketHandler.class
+co\unicauca\apptimarket\server\infra\ApptiMarketServerSocket.class

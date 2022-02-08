@@ -1,0 +1,5 @@
+co\unicauca\apptimarket\commons\infra\Utilities.class
+co\unicauca\apptimarket\commons\infra\Protocol.class
+co\unicauca\apptimarket\commons\domain\Product.class
+co\unicauca\apptimarket\commons\infra\JsonError.class
+co\unicauca\apptimarket\commons\infra\Parameter.class
