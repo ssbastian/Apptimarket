@@ -2,14 +2,18 @@ package co.unicauca.apptimarket.server.infra;
 import co.unicauca.apptimarket.commons.domain.ListaProductos;
 import co.unicauca.serversocket.serversockettemplate.infra.ServerSocketTemplate;
 import co.unicauca.apptimarket.commons.domain.Product;
+import co.unicauca.apptimarket.commons.domain.clsAdministrador;
+import co.unicauca.apptimarket.commons.domain.clsListaAdministradores;
 import co.unicauca.apptimarket.commons.infra.JsonError;
 import co.unicauca.apptimarket.commons.infra.Protocol;
 import co.unicauca.apptimarket.commons.infra.Utilities;
 import co.unicauca.apptimarket.server.access.Factory;
+import co.unicauca.apptimarket.server.access.IAdministradorRepository;
 import co.unicauca.apptimarket.server.domain.services.ProductService;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import co.unicauca.apptimarket.server.access.IProductRepository;
+import co.unicauca.apptimarket.server.domain.services.clsAdministradorService;
 import java.util.List;
 
 /**
@@ -24,6 +28,7 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
      * Servicio de clientes
      */
     private ProductService service;
+    private clsAdministradorService serviceAdmin;
 
     /**
      * Constructor
@@ -42,6 +47,10 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
         // Se hace la inyección de dependencia al ProductService
         IProductRepository repository = Factory.getInstance().getRepository();
         this.setService(new ProductService(repository));
+       
+        //:V
+        IAdministradorRepository repository2 = Factory.getInstance().getRepositoryAdministrador();
+        this.setServiceAdmin(new clsAdministradorService(repository2));
         return this;
     }
     
@@ -57,8 +66,8 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
     protected void processRequest(String requestJson) {
         // Convertir la solicitud a objeto Protocol para poderlo procesar
         Gson gson = new Gson();
+        System.out.println("PETICION__"+ requestJson);
         Protocol protocolRequest = gson.fromJson(requestJson, Protocol.class);
-
         switch (protocolRequest.getResource()) {
             case "product":
                 if (protocolRequest.getAction().equals("get")) {
@@ -78,6 +87,25 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
                 
                 
                 break;
+            
+            case "administrador":
+                if (protocolRequest.getAction().equals("get")) {
+                    // Consultar un customer
+                    processGetAdmin(protocolRequest);
+                }
+
+                if (protocolRequest.getAction().equals("get/lista")) {
+                    // Consultar un customer
+                    processGetListaAdmin(protocolRequest);
+                }
+                if (protocolRequest.getAction().equals("post")) {
+                    // Agregar un customer    
+                    processPostAdmin(protocolRequest);
+
+                }
+                
+                break;
+                
         }
 
     }
@@ -161,6 +189,43 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
 
         return errorsJson;
     }
+    
+    private void processGetAdmin(Protocol protocolRequest) 
+    {
+        String id = protocolRequest.getParameters().get(0).getValue();
+        clsAdministrador objAdmin = getServiceAdmin().findAdministrador(id);
+      //error
+        if (objAdmin == null) {
+            String errorJson = generateNotFoundErrorJson();
+            respond(errorJson);
+        } else {
+            List<clsAdministrador> objAdministradores = getServiceAdmin().findAdministradores();
+            for (clsAdministrador custo : objAdministradores) {
+                System.out.println("datos" + objAdministradores.toString());
+            }
+            clsListaAdministradores administradores = new clsListaAdministradores(objAdministradores);
+            System.out.println("HHH"+ administradores);
+            respond(objectToJSON(objAdmin));
+        }
+    }
+
+    private void processGetListaAdmin(Protocol protocolRequest) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private void processPostAdmin(Protocol protocolRequest) 
+    {
+        clsAdministrador objAdmin = new clsAdministrador();
+
+        objAdmin.setNombre(protocolRequest.getParameters().get(0).getValue());
+        objAdmin.setID(protocolRequest.getParameters().get(1).getValue());
+        objAdmin.setCodigo(protocolRequest.getParameters().get(2).getValue());
+        objAdmin.setNumeroContacto(protocolRequest.getParameters().get(3).getValue());
+
+
+        String response = getServiceAdmin().createAdministrador(objAdmin);
+        respond(response);
+    }
 
     /**
      * @return the service
@@ -175,5 +240,21 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
     public void setService(ProductService service) {
         this.service = service;
     }
+
+    
+    /**
+     * @return the service
+     */
+    public clsAdministradorService getServiceAdmin() {
+        return serviceAdmin;
+    }
+
+    /**
+     * @param service the service to set
+     */
+    public void setServiceAdmin(clsAdministradorService prmService) {
+        serviceAdmin = prmService;
+    }
+    
    
 }

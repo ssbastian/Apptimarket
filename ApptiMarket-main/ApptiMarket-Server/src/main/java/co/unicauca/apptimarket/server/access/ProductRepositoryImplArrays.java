@@ -1,7 +1,6 @@
 package co.unicauca.apptimarket.server.access;
 
 import co.unicauca.apptimarket.commons.domain.Product;
-import co.unicauca.apptimarket.commons.domain.User;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +15,6 @@ public final class ProductRepositoryImplArrays implements IProductRepository {
      * Array List de clientes
      */
     private static List<Product> ListProducts;
-    private static List<User> ListUsers;
 
     public ProductRepositoryImplArrays() {
         if (ListProducts == null) {
@@ -84,5 +82,4 @@ public final class ProductRepositoryImplArrays implements IProductRepository {
         return product.getAtrCodigoProducto();
     }
 
-    
 }

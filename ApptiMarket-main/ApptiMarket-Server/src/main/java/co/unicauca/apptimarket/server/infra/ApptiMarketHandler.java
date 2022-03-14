@@ -7,9 +7,11 @@ package co.unicauca.apptimarket.server.infra;
 
 import co.unicauca.serversocket.serversockettemplate.infra.ServerHandler;
 import co.unicauca.apptimarket.commons.domain.Product;
+import co.unicauca.apptimarket.commons.domain.clsAdministrador;
 import co.unicauca.apptimarket.commons.infra.JsonError;
 import co.unicauca.apptimarket.commons.infra.Protocol;
 import co.unicauca.apptimarket.server.domain.services.ProductService;
+import co.unicauca.apptimarket.server.domain.services.clsAdministradorService;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +26,7 @@ public class ApptiMarketHandler extends ServerHandler {
      * Servicio de clientes
      */
     private static ProductService service;
-    
+    private static clsAdministradorService atrServiceAdministrador;
     
      /**
      * Procesar la solicitud que proviene de la aplicación cliente
@@ -58,11 +60,22 @@ public class ApptiMarketHandler extends ServerHandler {
                     // Agregar un customer    
                     processPostProduct(protocolRequest);
                 }
-                
-               
-                
                 break;
+            case "administrador":
+                if(protocolRequest.getAction().equals("get"))
+                {
+                    processGetAdministrador(protocolRequest);
+                }
                 
+                if (protocolRequest.getAction().equals("get/")) {
+                    // Consultar un customer
+                    processGetAdministrador(protocolRequest);
+                }
+
+                if (protocolRequest.getAction().equals("post")) {
+                    // Agregar un customer    
+                    processPostAdministrador(protocolRequest);
+                }
               //otro caso seria para otra tabla
         }
 
@@ -119,6 +132,34 @@ public class ApptiMarketHandler extends ServerHandler {
         respond(response);
     }
 
+    private void processPostAdministrador(Protocol protocolRequest)
+    {
+        clsAdministrador objAdministrador = new clsAdministrador();
+        
+        objAdministrador.setNombre(protocolRequest.getParameters().get(0).getValue());
+        objAdministrador.setID(protocolRequest.getParameters().get(1).getValue());
+        objAdministrador.setCodigo(protocolRequest.getParameters().get(2).getValue());
+        objAdministrador.setNumeroContacto(protocolRequest.getParameters().get(3).getValue());
+
+        String response = getServiceAdministrador().createAdministrador(objAdministrador);
+        respond(response);
+    }
+    
+    private void processGetAdministrador(Protocol protocolRequest)
+    {
+        String cmpID = protocolRequest.getParameters().get(0).getValue();
+        clsAdministrador objAdministrador = atrServiceAdministrador.findAdministrador(cmpID);
+        List<clsAdministrador> varObjAdministradores = atrServiceAdministrador.findAdministradores();
+        if (objAdministrador == null) {
+            String errorJson = generateNotFoundErrorJson();
+            respond(errorJson);
+        } else {
+            respond(objectToJSON(objAdministrador));
+        }
+    }
+    
+    
+    
     /**
      * Genera un ErrorJson de cliente no encontrado
      *
@@ -151,4 +192,12 @@ public class ApptiMarketHandler extends ServerHandler {
     public void setService(ProductService service) {
         this.service = service;
     } 
+    
+    public clsAdministradorService getServiceAdministrador() {
+        return atrServiceAdministrador;
+    }
+
+    public void setServiceAdministrador(clsAdministradorService prmService) {
+        atrServiceAdministrador = prmService;
+    }
 }

@@ -48,4 +48,20 @@ public class Factory {
         return result;
 
     }
+    
+    public IAdministradorAccess getAdministradorService()
+    {
+        IAdministradorAccess cmpResult = null;
+        
+        //String cmpType = Utilities.loadProperty("administrador.service");
+        String cmpType = "default";
+        switch(cmpType)
+        {
+            case "default":
+                cmpResult = new clsApptiMarketAccessImplSocketsAdmi();
+                break;
+        }
+        
+        return cmpResult;
+    }
 }
