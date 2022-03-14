@@ -53,4 +53,25 @@ public class Factory {
         return result;
 
     }
+    
+    public IAdministradorRepository getRepositoryAdministrador() {
+        String type = Utilities.loadProperty("administrador.repository");
+        if (type.isEmpty()) {
+            type = "default";
+        }
+        
+        IAdministradorRepository cmpResult = null;
+
+        switch (type) {
+            case "default":
+                cmpResult = new AdministradorRepositoryArrays();
+                break;
+            /*case "mysql":
+                result = new ProductRepositoryImplMysql();
+                break;*/
+        }
+
+        return cmpResult;
+
+    }
 }

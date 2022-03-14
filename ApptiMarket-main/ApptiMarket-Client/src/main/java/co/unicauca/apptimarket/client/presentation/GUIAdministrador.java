@@ -1,10 +1,13 @@
 package co.unicauca.apptimarket.client.presentation;
 
 import co.unicauca.apptimarket.client.access.Factory;
+import co.unicauca.apptimarket.client.access.IAdministradorAccess;
 import co.unicauca.apptimarket.client.access.IProductAccess;
 import co.unicauca.apptimarket.client.domain.services.ProductService;
+import co.unicauca.apptimarket.client.domain.services.clsAdministradorService;
 import static co.unicauca.apptimarket.client.infra.Messages.successMessage;
 import co.unicauca.apptimarket.commons.domain.Product;
+import co.unicauca.apptimarket.commons.domain.clsAdministrador;
 import java.util.List;
 //import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
@@ -36,12 +39,12 @@ public class GUIAdministrador extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProductos = new javax.swing.JTable();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        btnCargarDatos = new javax.swing.JButton();
         lbl = new javax.swing.JLabel();
+        btnCargarDatos = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
+        btnUsuarioNuevo = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtCode = new javax.swing.JTextField();
@@ -56,7 +59,17 @@ public class GUIAdministrador extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        txtNameAdministrador = new javax.swing.JTextField();
+        txtIDAdministrador = new javax.swing.JTextField();
+        txtCodigoAdministrador = new javax.swing.JTextField();
+        txtNumeroConctactoAdministrador = new javax.swing.JTextField();
+        btnCancelar = new javax.swing.JButton();
+        btnAgregarAdministrador = new javax.swing.JButton();
+        btnBuscarAdministrador = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -91,55 +104,61 @@ public class GUIAdministrador extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblProductos);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 610, 230));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 630, 310));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
-        jLabel6.setText("Iniciar Sesion");
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, -1, -1));
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel7.setText("crear");
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 10, -1, -1));
+        lbl.setText("____");
 
         btnCargarDatos.setBackground(new java.awt.Color(204, 255, 0));
-        btnCargarDatos.setFont(new java.awt.Font("Consolas", 3, 14)); // NOI18N
-        btnCargarDatos.setText("Cargar Datos");
+        btnCargarDatos.setFont(new java.awt.Font("Consolas", 3, 12)); // NOI18N
+        btnCargarDatos.setText("Cargar");
         btnCargarDatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCargarDatosActionPerformed(evt);
             }
         });
 
-        lbl.setText("____");
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(690, Short.MAX_VALUE)
-                .addComponent(lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addComponent(btnCargarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(641, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addComponent(lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addComponent(btnCargarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(86, 86, 86))))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(90, 90, 90)
+                .addContainerGap()
                 .addComponent(lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
-                .addComponent(btnCargarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnCargarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(142, Short.MAX_VALUE))
         );
 
         jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 800, 330));
 
         jTextField1.setForeground(new java.awt.Color(153, 153, 153));
         jTextField1.setText("Buscar por identificacion");
-        jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 330, 30));
+        jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 330, 30));
+
+        btnUsuarioNuevo.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        btnUsuarioNuevo.setText("Nuevo usuario");
+        btnUsuarioNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsuarioNuevoActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnUsuarioNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 110, 20));
+
+        jButton3.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        jButton3.setText("Iniciar sesión");
+        jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 40, 120, 20));
 
         jTabbedPane1.addTab("interfaz inicial", jPanel3);
 
@@ -194,51 +213,114 @@ public class GUIAdministrador extends javax.swing.JFrame {
         });
         jPanel1.add(btnBuscar);
 
-        jTabbedPane1.addTab("Administrador", jPanel1);
+        jTabbedPane1.addTab("Registrar Producto", jPanel1);
+
+        jLabel8.setText("Nombre:");
+
+        jLabel9.setText("Identificación:");
+
+        jLabel10.setText("Código:");
+
+        jLabel11.setText("Número contacto:");
+
+        txtIDAdministrador.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        txtCodigoAdministrador.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        txtNumeroConctactoAdministrador.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        btnAgregarAdministrador.setText("Agregar");
+        btnAgregarAdministrador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarAdministradorActionPerformed(evt);
+            }
+        });
+
+        btnBuscarAdministrador.setText("Buscar");
+        btnBuscarAdministrador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarAdministradorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(132, 132, 132)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel11)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel8)
+                        .addComponent(jLabel10))
+                    .addComponent(jLabel9))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtNumeroConctactoAdministrador, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                            .addComponent(txtCodigoAdministrador, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBuscarAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(128, 128, 128))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(btnAgregarAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNameAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIDAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(285, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 405, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtIDAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addGap(51, 51, 51)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNameAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(38, 38, 38)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(txtCodigoAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(txtNumeroConctactoAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                    .addComponent(btnAgregarAdministrador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("tab3", jPanel4);
-
-        jPanel5.setBackground(new java.awt.Color(255, 51, 102));
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 446, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        jTabbedPane1.addTab("Administrador", jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jTabbedPane1)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(192, 192, 192)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         pack();
@@ -345,12 +427,83 @@ public class GUIAdministrador extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCargarDatosActionPerformed
 
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+        
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnUsuarioNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarioNuevoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUsuarioNuevoActionPerformed
+
+    private void btnAgregarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAdministradorActionPerformed
+        // TODO add your handling code here:
+        IAdministradorAccess objService = Factory.getInstance().getAdministradorService();
+
+        clsAdministradorService objAdministradorService = new clsAdministradorService(objService);
+
+        clsAdministrador objAdministrador = new clsAdministrador();
+
+        objAdministrador.setNombre(txtNameAdministrador.getText());
+        objAdministrador.setID(txtIDAdministrador.getText());
+        objAdministrador.setCodigo(txtCodigoAdministrador.getText());
+        objAdministrador.setNumeroContacto(txtNumeroConctactoAdministrador.getText());
+        
+
+        try {
+            String response = objAdministradorService.createAdministrador(objAdministrador);
+            successMessage("Administrador " + response + " agregado con éxito.", "Atención");
+            clearControlsAdministrador();
+            txtIDAdministrador.setText("");
+            btnAgregarAdministrador.setVisible(true);
+        } catch (Exception ex) {
+            successMessage(ex.getMessage(), "Atención");
+        }
+        
+    }//GEN-LAST:event_btnAgregarAdministradorActionPerformed
+
+    private void btnBuscarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarAdministradorActionPerformed
+        // TODO add your handling code here:
+        String cmpID = txtIDAdministrador.getText().trim();
+
+         IAdministradorAccess objAdminService = Factory.getInstance().getAdministradorService();
+
+       clsAdministradorService admintService = new clsAdministradorService(objAdminService);
+       
+        if (cmpID.equals("")) {
+
+        }
+
+        clsAdministrador objAdmin;
+
+        try {
+            objAdmin = admintService.findAdministrador(cmpID);
+            System.out.println("____"+objAdmin.toString());
+        } catch (Exception ex) {
+
+            clearControlsAdministrador();
+            successMessage(ex.getMessage(), "Atención");
+            return;
+        }
+
+//        clearControlsAdministrador();
+//        showDataAdministrador(objAdmin);
+    }//GEN-LAST:event_btnBuscarAdministradorActionPerformed
+
     public void showData(Product product) {
         txtCode.setText(product.getAtrCodigoProducto());
         txtName.setText(product.getAtrNombre());
         txtPrice.setText(product.getAtrPrecio() + "");
         txtExist.setText(product.getAtrExistencia() + "");
         txtType.setText(product.getAtrTipo());
+    }
+    
+    public void showDataAdministrador(clsAdministrador prmAdministrador) {
+        txtNameAdministrador.setText(prmAdministrador.getNombre());
+        txtIDAdministrador.setText(prmAdministrador.getID());
+        txtCodigoAdministrador.setText(prmAdministrador.getCodigo());
+        txtNumeroConctactoAdministrador.setText(prmAdministrador.getNumeroContacto());
     }
 
     public void clearControls() {
@@ -359,6 +512,14 @@ public class GUIAdministrador extends javax.swing.JFrame {
         txtPrice.setText("");
         txtExist.setText("");
         txtType.setText("");
+    }
+    
+    public void clearControlsAdministrador() 
+    {
+        txtNameAdministrador.setText("");
+        txtIDAdministrador.setText("");
+        txtCodigoAdministrador.setText("");
+        txtNumeroConctactoAdministrador.setText("");
     }
 
     /**
@@ -408,20 +569,26 @@ public class GUIAdministrador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnAgregarAdministrador;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnBuscarAdministrador;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCargarDatos;
+    private javax.swing.JButton btnUsuarioNuevo;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -429,8 +596,12 @@ public class GUIAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel lbl;
     private javax.swing.JTable tblProductos;
     private javax.swing.JTextField txtCode;
+    private javax.swing.JTextField txtCodigoAdministrador;
     private javax.swing.JTextField txtExist;
+    private javax.swing.JTextField txtIDAdministrador;
     private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtNameAdministrador;
+    private javax.swing.JTextField txtNumeroConctactoAdministrador;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtType;
     // End of variables declaration//GEN-END:variables
