@@ -38,6 +38,8 @@ public class ProductService {
     public synchronized Product findProduct(String code) {
         return repo.findProduct(code);
     }
+    
+    
 
     /**
      * Crea un nuevo customer. Aplica validaciones de negocio
@@ -47,31 +49,42 @@ public class ProductService {
      */
     public synchronized String createProduct(Product product) {
         List<JsonError> errors = new ArrayList<>();
-  
+
         // Validaciones y reglas de negocio
         if (product.getAtrCodigoProducto().isEmpty() || product.getAtrNombre().isEmpty()
                 || product.getAtrTipo().isEmpty() || product.getAtrPrecio() <= 0.0) {
-           errors.add(new JsonError("400", "BAD_REQUEST","código, nombre, precio, existencias y tipo son obligatorios. "));
+            errors.add(new JsonError("400", "BAD_REQUEST", "código, nombre, precio, existencias y tipo son obligatorios. "));
         }
-        
-        if(!Utilities.isNumeric(product.getAtrCodigoProducto())){
-            errors.add(new JsonError("400", "BAD_REQUEST","El código debe ser numérico. "));
-            
+
+        if (!Utilities.isNumeric(product.getAtrCodigoProducto())) {
+            errors.add(new JsonError("400", "BAD_REQUEST", "El código debe ser numérico. "));
+
         }
         // Que no esté repetido
-        
+
         Product productSearched = this.findProduct(product.getAtrCodigoProducto());
-        if (productSearched != null){
-            errors.add(new JsonError("400", "BAD_REQUEST","El código ya existe. "));
+        if (productSearched != null) {
+            errors.add(new JsonError("400", "BAD_REQUEST", "El código ya existe. "));
         }
-        
-       if (!errors.isEmpty()) {
+
+        if (!errors.isEmpty()) {
             Gson gson = new Gson();
             String errorsJson = gson.toJson(errors);
             return errorsJson;
-        }             
+        }
         return repo.createProduct(product);
     }
 
+    
+
+    
+    /**
+     * lista de productos para retornarla al cliente
+     * @return 
+     */
+    public synchronized List<Product> findProducts() {
+       return repo.findProducts();
+
+    }
 
 }

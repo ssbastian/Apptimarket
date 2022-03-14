@@ -176,6 +176,7 @@ public abstract class ServerSocketTemplate implements Runnable {
     protected String objectToJSON(Object customer) {
         Gson gson = new Gson();
         String strObject = gson.toJson(customer);
+        System.out.println("En formato json"+strObject);
         return strObject;
     }
     

@@ -2,6 +2,8 @@ package co.unicauca.apptimarket.client.domain.services;
 
 import co.unicauca.apptimarket.commons.domain.Product;
 import co.unicauca.apptimarket.client.access.IProductAccess;
+import java.util.List;
+
 
 /**
  * Es una fachada para comunicar la presentación con el
@@ -34,6 +36,12 @@ public class ProductService {
 
     }
     
+    
+    
+     public List<Product> findProducts() throws Exception {
+        return access.findProducts();
+
+    }
     public String createProduct(Product product) throws Exception {
         return access.createProduct(product);
 

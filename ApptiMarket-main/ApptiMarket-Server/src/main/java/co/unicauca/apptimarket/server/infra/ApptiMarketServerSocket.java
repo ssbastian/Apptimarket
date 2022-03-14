@@ -1,4 +1,5 @@
 package co.unicauca.apptimarket.server.infra;
+import co.unicauca.apptimarket.commons.domain.ListaProductos;
 import co.unicauca.serversocket.serversockettemplate.infra.ServerSocketTemplate;
 import co.unicauca.apptimarket.commons.domain.Product;
 import co.unicauca.apptimarket.commons.infra.JsonError;
@@ -8,8 +9,8 @@ import co.unicauca.apptimarket.server.access.Factory;
 import co.unicauca.apptimarket.server.domain.services.ProductService;
 import com.google.gson.Gson;
 import java.util.ArrayList;
-import java.util.List;
 import co.unicauca.apptimarket.server.access.IProductRepository;
+import java.util.List;
 
 /**
  * Servidor Socket que está escuchando permanentemente solicitudes de los
@@ -65,11 +66,17 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
                     processGetCustomer(protocolRequest);
                 }
 
+                if (protocolRequest.getAction().equals("get/lista")) {
+                    // Consultar un customer
+                    processGetListaCustomer(protocolRequest);
+                }
                 if (protocolRequest.getAction().equals("post")) {
                     // Agregar un customer    
                     processPostCustomer(protocolRequest);
 
                 }
+                
+                
                 break;
         }
 
@@ -80,7 +87,26 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
      *
      * @param protocolRequest Protocolo de la solicitud
      */
-    private void processGetCustomer(Protocol protocolRequest) {
+    private void processGetListaCustomer(Protocol protocolRequest) {
+        // Extraer la cedula del primer parámetro
+        String id = protocolRequest.getParameters().get(0).getValue();
+        System.out.println("RECIBIO PETICION");
+        Product customer = getService().findProduct(id);
+        //List <Product> products = getService().findProducts(); 
+         ListaProductos product = new ListaProductos(getService().findProducts());
+        
+    
+        
+        if (customer != null) {
+            String errorJson = generateNotFoundErrorJson();
+            respond(errorJson);
+        } else {
+            respond(objectToJSON(product));
+        }
+    }
+
+    
+       private void processGetCustomer(Protocol protocolRequest) {
         // Extraer la cedula del primer parámetro
         String id = protocolRequest.getParameters().get(0).getValue();
         Product customer = getService().findProduct(id);
@@ -88,10 +114,17 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
             String errorJson = generateNotFoundErrorJson();
             respond(errorJson);
         } else {
+            List<Product> a = getService().findProducts();
+            for (Product custo : a) {
+                System.out.println("datos"+a.toString());
+            }
+          ListaProductos product = new ListaProductos(a);
+            System.out.println("HHH"+ product);
             respond(objectToJSON(customer));
         }
     }
-
+    
+    
     /**
      * Procesa la solicitud de agregar un customer
      *
