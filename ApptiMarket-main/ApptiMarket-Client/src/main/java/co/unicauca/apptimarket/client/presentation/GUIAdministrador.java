@@ -1,4 +1,3 @@
-
 package co.unicauca.apptimarket.client.presentation;
 
 import co.unicauca.apptimarket.client.access.Factory;
@@ -6,6 +5,9 @@ import co.unicauca.apptimarket.client.access.IProductAccess;
 import co.unicauca.apptimarket.client.domain.services.ProductService;
 import static co.unicauca.apptimarket.client.infra.Messages.successMessage;
 import co.unicauca.apptimarket.commons.domain.Product;
+import java.util.List;
+//import javax.swing.ImageIcon;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -31,6 +33,15 @@ public class GUIAdministrador extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblProductos = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        btnCargarDatos = new javax.swing.JButton();
+        lbl = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtCode = new javax.swing.JTextField();
@@ -44,8 +55,8 @@ public class GUIAdministrador extends javax.swing.JFrame {
         txtType = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -60,8 +71,77 @@ public class GUIAdministrador extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Apptimarket");
+        setBackground(new java.awt.Color(51, 153, 255));
 
         jTabbedPane1.setBackground(new java.awt.Color(102, 204, 255));
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 0));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tblProductos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblProductos);
+
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 610, 230));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
+        jLabel6.setText("Iniciar Sesion");
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel7.setText("crear");
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 10, -1, -1));
+
+        btnCargarDatos.setBackground(new java.awt.Color(204, 255, 0));
+        btnCargarDatos.setFont(new java.awt.Font("Consolas", 3, 14)); // NOI18N
+        btnCargarDatos.setText("Cargar Datos");
+        btnCargarDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCargarDatosActionPerformed(evt);
+            }
+        });
+
+        lbl.setText("____");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(690, Short.MAX_VALUE)
+                .addComponent(lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addComponent(btnCargarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(btnCargarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(61, Short.MAX_VALUE))
+        );
+
+        jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 800, 330));
+
+        jTextField1.setForeground(new java.awt.Color(153, 153, 153));
+        jTextField1.setText("Buscar por identificacion");
+        jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 330, 30));
+
+        jTabbedPane1.addTab("interfaz inicial", jPanel3);
 
         jPanel1.setBackground(new java.awt.Color(51, 204, 255));
         jPanel1.setLayout(new java.awt.GridLayout(6, 2, 5, 0));
@@ -116,74 +196,78 @@ public class GUIAdministrador extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Administrador", jPanel1);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 466, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 281, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("tab2", jPanel3);
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 466, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 281, Short.MAX_VALUE)
+            .addGap(0, 405, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("tab3", jPanel4);
+
+        jPanel5.setBackground(new java.awt.Color(255, 51, 102));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 446, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(192, 192, 192)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
+
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
         String code = txtCode.getText().trim();
-        
+
         IProductAccess service = Factory.getInstance().getProductService();
-        
+
         ProductService productService = new ProductService(service);
-        
-        if(code.equals(""))
-        {
-            
+
+        if (code.equals("")) {
+
         }
-        
+
         Product product;
-        
-        try
-        {
+
+        try {
             product = productService.findProduct(code);
-        }
-        catch(Exception ex)
-        {
+        } catch (Exception ex) {
+
             clearControls();
             successMessage(ex.getMessage(), "Atención");
             return;
         }
-        
+
         clearControls();
         showData(product);
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -191,48 +275,92 @@ public class GUIAdministrador extends javax.swing.JFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
         IProductAccess service = Factory.getInstance().getProductService();
-        
+
         ProductService productService = new ProductService(service);
-        
+
         Product product = new Product();
-        
+
         product.setAtrCodigoProducto(txtCode.getText());
         product.setAtrNombre(txtName.getText());
         product.setAtrPrecio(Double.parseDouble(txtPrice.getText()));
         product.setAtrExistencia(Integer.parseInt(txtExist.getText()));
         product.setAtrTipo(txtType.getText());
-        
-        try
-        {
+
+        try {
             String response = productService.createProduct(product);
-            successMessage("Producto "+ response + " agregado con éxito.", "Atención");
+            successMessage("Producto " + response + " agregado con éxito.", "Atención");
             clearControls();
             txtCode.setText("");
             btnAgregar.setVisible(true);
-        }
-        catch(Exception ex)
-        {
+        } catch (Exception ex) {
             successMessage(ex.getMessage(), "Atención");
         }
-                
+
     }//GEN-LAST:event_btnAgregarActionPerformed
 
-    public void showData(Product product)
-    {
+    DefaultTableModel modelo = new DefaultTableModel();
+
+    private void btnCargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarDatosActionPerformed
+        tblProductos.setModel(modelo);
+        modelo.setRowCount(0);
+        // String code = txtCode.getText().trim();
+        IProductAccess service = Factory.getInstance().getProductService();
+        ProductService productService = new ProductService(service);
+        Product product;
+
+        try {
+//            ImageIcon Imagenes = new ImageIcon(getClass().getResource("C:\\Users\\juan sebastian\\Desktop\\Apptimarket-main\\Apptimarket-main\\ApptiMarket-main\\ApptiMarket-Client\\src\\main\\java\\resources\\agregar.png"));                       
+//                   lbl.setIcon(Imagenes);
+            System.out.println("mirando lista");
+            List<Product> producto = productService.findProducts();
+            // System.out.println("\n PRODUCTOS____________________________" + producto);
+            modelo.setColumnIdentifiers(new Object[]{"idx", "Codigo", "Nombre", "Precio", "Existencias", "Tipo", "Imagen"});
+//            Object[] fila = new Object[2];     
+//             fila[0] = "HOla mundo en";
+//                 fila[1] = "zx";
+            // modelo.insertRow(new Object[]{"IMAGEN"});
+
+            for (int count = 0; count < producto.size(); count++) {
+                modelo.insertRow(count, new Object[]{count, producto.get(count).getAtrCodigoProducto(),
+                    producto.get(count).getAtrNombre(), producto.get(count).getAtrPrecio(),
+                    producto.get(count).getAtrExistencia(), producto.get(count).getAtrTipo(),
+                    lbl.getIcon()});
+            }
+
+            for (int count = producto.size(); count < producto.size() + 5; count++) {
+                modelo.insertRow(count, new Object[]{""});
+            }
+
+            tblProductos.setRowHeight(1, 30);
+        } catch (Exception ex) {
+
+            clearControls();
+            successMessage(ex.getMessage(), "Atención");
+            return;
+        }
+
+        clearControls();
+        //showData(product);
+
+
+    }//GEN-LAST:event_btnCargarDatosActionPerformed
+
+    public void showData(Product product) {
         txtCode.setText(product.getAtrCodigoProducto());
         txtName.setText(product.getAtrNombre());
         txtPrice.setText(product.getAtrPrecio() + "");
         txtExist.setText(product.getAtrExistencia() + "");
         txtType.setText(product.getAtrTipo());
     }
-    public void clearControls() 
-    {
+
+    public void clearControls() {
         txtCode.setText("");
         txtName.setText("");
         txtPrice.setText("");
         txtExist.setText("");
         txtType.setText("");
     }
+
     /**
      * @param args the command line arguments
      */
@@ -268,19 +396,38 @@ public class GUIAdministrador extends javax.swing.JFrame {
         });
     }
 
+//    
+//     public void eliminar(){
+//        //DefaultTableModel tb = (DefaultTableModel) Jtable.getModel();
+//        int a = JtablegetRowCount()-1;
+//        for (int i = a; i >= 0; i--) {          
+//        modelo.removeRow(modelo.getRowCount()-1);
+//        }
+//        //cargaTicket();
+//    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCargarDatos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lbl;
+    private javax.swing.JTable tblProductos;
     private javax.swing.JTextField txtCode;
     private javax.swing.JTextField txtExist;
     private javax.swing.JTextField txtName;

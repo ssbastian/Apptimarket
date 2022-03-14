@@ -1,6 +1,8 @@
 package co.unicauca.apptimarket.client.access;
 
 import co.unicauca.apptimarket.commons.domain.Product;
+import java.util.List;
+
 
 /**
  * Interface que define los servicios de persistencia de Clientes de la agencia
@@ -18,6 +20,14 @@ public interface IProductAccess {
      */
     public Product findProduct(String code) throws Exception;
 
+    
+    /**
+     * buscar toda la lista de productos 
+     * @return
+     * @throws Exception 
+     */
+     public List<Product> findProducts() throws Exception;
+    
     /**
      * Crea un Customer
      *

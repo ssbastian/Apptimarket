@@ -48,13 +48,22 @@ public class ApptiMarketHandler extends ServerHandler {
                     // Consultar un customer
                     processGetProduct(protocolRequest);
                 }
+                
+                if (protocolRequest.getAction().equals("get")) {
+                    // Consultar un customer
+                    processGetProduct(protocolRequest);
+                }
 
                 if (protocolRequest.getAction().equals("post")) {
                     // Agregar un customer    
                     processPostProduct(protocolRequest);
-
                 }
+                
+               
+                
                 break;
+                
+              //otro caso seria para otra tabla
         }
 
     }
@@ -68,6 +77,7 @@ public class ApptiMarketHandler extends ServerHandler {
         // Extraer la cedula del primer parámetro
         String code = protocolRequest.getParameters().get(0).getValue();
         Product product = service.findProduct(code);
+        List<Product> ListProducts = service.findProducts();
         if (product == null) {
             String errorJson = generateNotFoundErrorJson();
             respond(errorJson);
@@ -75,6 +85,20 @@ public class ApptiMarketHandler extends ServerHandler {
             respond(objectToJSON(product));
         }
     }
+    
+    
+//        private void processGetProduct(Protocol protocolRequest) {
+//        // Extraer la cedula del primer parámetro
+//        String code = protocolRequest.getParameters().get(0).getValue();
+//        Product product = service.findProduct(code);
+//        if (product == null) {
+//            String errorJson = generateNotFoundErrorJson();
+//            respond(errorJson);
+//        } else {
+//            respond(objectToJSON(product));
+//        }
+//    }
+
 
     /**
      * Procesa la solicitud de agregar un customer

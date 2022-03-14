@@ -13,6 +13,8 @@ public class Product {
    private int atrExistencia;
    private String atrTipo;
 
+   //imagen
+
     /**
      * Constructor parametrizado
      *
