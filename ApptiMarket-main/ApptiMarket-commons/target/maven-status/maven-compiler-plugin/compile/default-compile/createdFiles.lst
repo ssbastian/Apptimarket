@@ -5,7 +5,8 @@ co\unicauca\apptimarket\commons\domain\User.class
 co\unicauca\apptimarket\commons\infra\Parameter.class
 co\unicauca\apptimarket\commons\infra\Utilities.class
 co\unicauca\apptimarket\commons\domain\ListaProductos.class
+co\unicauca\apptimarket\commons\domain\clsListaClientes.class
 co\unicauca\apptimarket\commons\domain\Product.class
+co\unicauca\apptimarket\commons\domain\Customer.class
 co\unicauca\apptimarket\commons\domain\clsListaAdministradores.class
 co\unicauca\apptimarket\commons\infra\JsonError.class
-co\unicauca\apptimarket\commons\domain\Cliente.class
