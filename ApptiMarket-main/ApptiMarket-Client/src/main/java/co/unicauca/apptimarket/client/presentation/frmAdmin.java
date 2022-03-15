@@ -1,4 +1,6 @@
 
+/* COMENTARIO PRUEBA */
+
 package co.unicauca.apptimarket.client.presentation;
 
 /**
@@ -195,6 +197,7 @@ public class frmAdmin extends javax.swing.JFrame {
 
     private void btnCancelarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarRegistroActionPerformed
         // TODO add your handling code here:
+        
         new frmBienvenido().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCancelarRegistroActionPerformed
