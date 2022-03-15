@@ -2,8 +2,11 @@ C:\Users\WINDOWS\Documents\Apptimarket\ApptiMarket-main\ApptiMarket-Client\src\m
 C:\Users\WINDOWS\Documents\Apptimarket\ApptiMarket-main\ApptiMarket-Client\src\main\java\co\unicauca\apptimarket\client\domain\services\clsAdministradorService.java
 C:\Users\WINDOWS\Documents\Apptimarket\ApptiMarket-main\ApptiMarket-Client\src\main\java\co\unicauca\apptimarket\client\access\clsApptiMarketAccessImplSocketsAdmi.java
 C:\Users\WINDOWS\Documents\Apptimarket\ApptiMarket-main\ApptiMarket-Client\src\main\java\co\unicauca\apptimarket\client\domain\User.java
+C:\Users\WINDOWS\Documents\Apptimarket\ApptiMarket-main\ApptiMarket-Client\src\main\java\co\unicauca\apptimarket\client\presentation\frmCliente.java
 C:\Users\WINDOWS\Documents\Apptimarket\ApptiMarket-main\ApptiMarket-Client\src\main\java\co\unicauca\apptimarket\client\presentation\Performance.java
+C:\Users\WINDOWS\Documents\Apptimarket\ApptiMarket-main\ApptiMarket-Client\src\main\java\co\unicauca\apptimarket\client\presentation\frmAdmin.java
 C:\Users\WINDOWS\Documents\Apptimarket\ApptiMarket-main\ApptiMarket-Client\src\main\java\co\unicauca\apptimarket\client\infra\Security.java
+C:\Users\WINDOWS\Documents\Apptimarket\ApptiMarket-main\ApptiMarket-Client\src\main\java\co\unicauca\apptimarket\client\access\ApptiMarketAccessImplSocketsClient.java
 C:\Users\WINDOWS\Documents\Apptimarket\ApptiMarket-main\ApptiMarket-Client\src\main\java\co\unicauca\apptimarket\client\access\IAdministradorAccess.java
 C:\Users\WINDOWS\Documents\Apptimarket\ApptiMarket-main\ApptiMarket-Client\src\main\java\co\unicauca\apptimarket\client\infra\ApptiMarketSocket.java
 C:\Users\WINDOWS\Documents\Apptimarket\ApptiMarket-main\ApptiMarket-Client\src\main\java\co\unicauca\apptimarket\client\presentation\GUIAddCityDialogDialog.java
@@ -14,6 +17,8 @@ C:\Users\WINDOWS\Documents\Apptimarket\ApptiMarket-main\ApptiMarket-Client\src\m
 C:\Users\WINDOWS\Documents\Apptimarket\ApptiMarket-main\ApptiMarket-Client\src\main\java\co\unicauca\apptimarket\client\presentation\GUICustomizerPackage.java
 C:\Users\WINDOWS\Documents\Apptimarket\ApptiMarket-main\ApptiMarket-Client\src\main\java\co\unicauca\apptimarket\client\presentation\GUIAllInOnePackage.java
 C:\Users\WINDOWS\Documents\Apptimarket\ApptiMarket-main\ApptiMarket-Client\src\main\java\co\unicauca\apptimarket\client\domain\services\UserService.java
+C:\Users\WINDOWS\Documents\Apptimarket\ApptiMarket-main\ApptiMarket-Client\src\main\java\co\unicauca\apptimarket\client\access\IClientAccess.java
 C:\Users\WINDOWS\Documents\Apptimarket\ApptiMarket-main\ApptiMarket-Client\src\main\java\co\unicauca\apptimarket\client\access\Factory.java
 C:\Users\WINDOWS\Documents\Apptimarket\ApptiMarket-main\ApptiMarket-Client\src\main\java\co\unicauca\apptimarket\client\access\IProductAccess.java
 C:\Users\WINDOWS\Documents\Apptimarket\ApptiMarket-main\ApptiMarket-Client\src\main\java\co\unicauca\apptimarket\client\presentation\GUIMenu.java
+C:\Users\WINDOWS\Documents\Apptimarket\ApptiMarket-main\ApptiMarket-Client\src\main\java\co\unicauca\apptimarket\client\presentation\frmBienvenido.java
