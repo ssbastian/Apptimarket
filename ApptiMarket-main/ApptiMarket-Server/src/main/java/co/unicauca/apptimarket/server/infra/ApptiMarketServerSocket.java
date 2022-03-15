@@ -1,5 +1,6 @@
 package co.unicauca.apptimarket.server.infra;
 
+import co.unicauca.apptimarket.commons.domain.Customer;
 import co.unicauca.apptimarket.commons.domain.ListaProductos;
 import co.unicauca.serversocket.serversockettemplate.infra.ServerSocketTemplate;
 import co.unicauca.apptimarket.commons.domain.Product;
@@ -64,12 +65,11 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
         //:V
         IAdministradorRepository repository2 = Factory.getInstance().getRepositoryAdministrador();
         this.setServiceAdmin(new clsAdministradorService(repository2));
+
         ICustomerRepository repository3 = Factory.getInstance().getRepositoryCustomer();
         this.setServiceCustomer(new CustomerService(repository3));
         return this;
 
-       
-       
     }
 
     /**
@@ -118,7 +118,17 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
                 if (protocolRequest.getAction().equals("post")) {
                     // Agregar un customer    
                     processPostAdmin(protocolRequest);
+                }
 
+            case "customer":
+                if (protocolRequest.getAction().equals("get")) {
+                    // Consultar un customer
+                    processGetClient(protocolRequest);
+                }
+
+                if (protocolRequest.getAction().equals("post")) {
+                    // Agregar un customer    
+                    processPostClient(protocolRequest);
                 }
 
                 break;
@@ -258,6 +268,10 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
         return serviceAdmin;
     }
 
+    public CustomerService getServiceCustomer() {
+        return serviceCustomer;
+    }
+
     /**
      * @param service the service to set
      */
@@ -266,7 +280,41 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
     }
 
     private void setServiceCustomer(CustomerService customerService) {
-       serviceCustomer = customerService;
+        serviceCustomer = customerService;
     }
 
+    /**
+     * Busqueda del cliente
+     *
+     * @param protocolRequest
+     */
+    private void processGetClient(Protocol protocolRequest) {
+        // Extraer la cedula del primer parámetro
+        String id = protocolRequest.getParameters().get(0).getValue();
+        Customer customer = getServiceCustomer().findCustomer(id);
+        if (customer == null) {
+            String errorJson = generateNotFoundErrorJson();
+            respond(errorJson);
+        } else {
+            respond(objectToJSON(customer));
+        }
+
+    }
+
+    private void processPostClient(Protocol protocolRequest) {
+        Customer objCustomer = new Customer();
+
+        objCustomer.setAtrCodigoCustomer(protocolRequest.getParameters().get(0).getValue());
+        objCustomer.setID(protocolRequest.getParameters().get(1).getValue());
+        objCustomer.setAtrTipoIdCustomer(protocolRequest.getParameters().get(2).getValue());
+        objCustomer.setNombre(protocolRequest.getParameters().get(3).getValue());
+        objCustomer.setNumeroContacto(protocolRequest.getParameters().get(4).getValue());
+        objCustomer.setAtrEmailCustomer(protocolRequest.getParameters().get(5).getValue());
+        objCustomer.setAtrDireccionCustomer(protocolRequest.getParameters().get(6).getValue());
+        objCustomer.setAtrGeneroCustomer(protocolRequest.getParameters().get(7).getValue());
+
+        String response = getServiceCustomer().createCustomer(objCustomer);
+        respond(response);
+
+    }
 }

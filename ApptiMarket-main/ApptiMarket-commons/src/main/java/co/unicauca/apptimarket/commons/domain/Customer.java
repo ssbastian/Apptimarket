@@ -22,6 +22,9 @@ public final class Customer extends clsCliente {  // HACER INTERFACE Y LUEGO HAC
         atrGeneroCustomer = prmGenero;
     }
 
+    public Customer() {
+    }
+
     
     
     @Override
