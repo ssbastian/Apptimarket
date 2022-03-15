@@ -23,6 +23,7 @@ public class frmCliente extends javax.swing.JFrame {
     public frmCliente() {
         initComponents();
         setLocationRelativeTo(null);
+        this.verTablaRegProduct(); //mostrar la tabla de registrar producto desde que se abre la pestaña
     }
 
     /**
@@ -157,11 +158,16 @@ public class frmCliente extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                true, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblRegProduct.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblRegProductMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(tblRegProduct);
@@ -258,7 +264,7 @@ public class frmCliente extends javax.swing.JFrame {
         new frmBienvenido().setVisible(true);
         this.dispose();
         
-        this.verTablaRegProduct(); //mostrar la tabla de registrar producto desde que se abre la pestaña
+        
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     
@@ -300,7 +306,23 @@ public class frmCliente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnVerActionPerformed
 
-    DefaultTableModel objRegProduct = new DefaultTableModel();
+    private void tblRegProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRegProductMouseClicked
+        // TODO add your handling code here:
+        int seleccionar = tblRegProduct.rowAtPoint(evt.getPoint());
+        jTextField1.setText((String.valueOf(tblRegProduct.getValueAt(seleccionar, 1))));
+        jTextField2.setText((String.valueOf(tblRegProduct.getValueAt(seleccionar, 2))));
+        jTextField3.setText((String.valueOf(tblRegProduct.getValueAt(seleccionar, 3))));
+    
+    }//GEN-LAST:event_tblRegProductMouseClicked
+
+    
+    DefaultTableModel objRegProduct = new DefaultTableModel(){
+        @Override
+        public boolean isCellEditable(int row, int column){
+            return false;
+        }
+    };
+    
     //Mostrar datos en la tabla del pabel Registrar producto
     private void verTablaRegProduct() {                                       
         // TODO add your handling code here:
@@ -336,14 +358,7 @@ public class frmCliente extends javax.swing.JFrame {
             return;
         }
     }     
-    
-    //Evento de Click sobre la tabla para capturar los datos
-    public void tblRegProductMouseClicked(java.awt.event.MouseEvent evt){
-        int seleccionar = tblRegProduct.rowAtPoint(evt.getPoint());
-        jTextField1.setText((String.valueOf(tblRegProduct.getValueAt(seleccionar, 1))));
-        jTextField2.setText((String.valueOf(tblRegProduct.getValueAt(seleccionar, 2))));
-        jTextField3.setText((String.valueOf(tblRegProduct.getValueAt(seleccionar, 3))));
-    }
+   
     /**
      * @param args the command line arguments
      */

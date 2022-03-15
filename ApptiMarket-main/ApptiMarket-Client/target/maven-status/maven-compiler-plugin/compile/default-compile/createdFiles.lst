@@ -12,6 +12,7 @@ co\unicauca\apptimarket\client\access\Factory.class
 co\unicauca\apptimarket\client\presentation\frmInicial$2.class
 co\unicauca\apptimarket\client\presentation\GUIAddCityDialogDialog$1.class
 co\unicauca\apptimarket\client\domain\services\ProductService.class
+co\unicauca\apptimarket\client\presentation\frmCliente$5.class
 co\unicauca\apptimarket\client\presentation\GUIAdministrador$3.class
 co\unicauca\apptimarket\client\presentation\GUIMenu$3.class
 co\unicauca\apptimarket\client\presentation\GUIAllInOnePackage$4.class
@@ -39,6 +40,7 @@ co\unicauca\apptimarket\client\presentation\GUILogin.class
 co\unicauca\apptimarket\client\presentation\GUIAdministrador.class
 co\unicauca\apptimarket\client\presentation\GUIMenu$5.class
 co\unicauca\apptimarket\client\infra\ApptiMarketSocket.class
+co\unicauca\apptimarket\client\presentation\frmCliente$4.class
 co\unicauca\apptimarket\client\presentation\GUIAddCityDialogDialog.class
 co\unicauca\apptimarket\client\presentation\GUIAdministrador$5.class
 co\unicauca\apptimarket\client\presentation\GUIAllInOnePackage$5.class
@@ -65,6 +67,7 @@ co\unicauca\apptimarket\client\presentation\GUIMenu$4.class
 co\unicauca\apptimarket\client\presentation\frmCliente$3.class
 co\unicauca\apptimarket\client\presentation\GUIAddCityDialogDialog$4$1.class
 co\unicauca\apptimarket\client\presentation\GUIAdministrador$1.class
+co\unicauca\apptimarket\client\presentation\frmBienvenido$4.class
 co\unicauca\apptimarket\client\presentation\GUIAddCityDialogDialog$2.class
 co\unicauca\apptimarket\client\presentation\frmCliente.class
 co\unicauca\apptimarket\client\infra\Messages.class
@@ -76,3 +79,4 @@ co\unicauca\apptimarket\client\presentation\Performance.class
 co\unicauca\apptimarket\client\presentation\frmAdmin$4.class
 co\unicauca\apptimarket\client\presentation\GUICustomizerPackage$1.class
 co\unicauca\apptimarket\client\presentation\GUIMenu$7.class
+co\unicauca\apptimarket\client\presentation\frmCliente$6.class
