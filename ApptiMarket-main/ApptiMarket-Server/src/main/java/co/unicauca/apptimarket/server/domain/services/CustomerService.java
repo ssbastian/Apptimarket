@@ -47,19 +47,19 @@ public class CustomerService {
         List<JsonError> errors = new ArrayList<>();
 
         //validar datos que estan vacios
-        if (customer.getAtrCodigoCustomer().isEmpty() || customer.getID().isEmpty()
-                || customer.getAtrTipoIdCustomer().isEmpty() || customer.getNombre().isEmpty()
-                || customer.getNumeroContacto().isEmpty() || customer.getAtrEmailCustomer().isEmpty()
-                || customer.getAtrDireccionCustomer().isEmpty() || customer.getAtrDireccionCustomer().isEmpty()) {
+        if (customer.getCodigoCustomer().isEmpty() || customer.getID().isEmpty()
+                || customer.getTipoIdCustomer().isEmpty() || customer.getNombre().isEmpty()
+                || customer.getNumeroContacto().isEmpty() || customer.getEmailCustomer().isEmpty()
+                || customer.getDireccionCustomer().isEmpty() || customer.getDireccionCustomer().isEmpty()) {
             errors.add(new JsonError("400", "BAD_REQUEST", "todos los datos correspondientes al cliente, son obligatorios. "));
         }
         
-        if (!Utilities.isNumeric(customer.getAtrCodigoCustomer())) {
+        if (!Utilities.isNumeric(customer.getCodigoCustomer())) {
             errors.add(new JsonError("400", "BAD_REQUEST", "El código debe ser numérico. "));
         }
 
         //validar que no este repetido
-        Customer customerSearched = this.findCustomer(customer.getAtrCodigoCustomer());
+        Customer customerSearched = this.findCustomer(customer.getCodigoCustomer());
         if (customerSearched != null) {
             errors.add(new JsonError("400", "BAD_REQUEST", "El código ya existe con otro cliente. "));
         }

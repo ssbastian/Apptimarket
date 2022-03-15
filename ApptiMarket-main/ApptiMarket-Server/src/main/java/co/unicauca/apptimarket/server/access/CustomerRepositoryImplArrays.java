@@ -30,7 +30,7 @@ public class CustomerRepositoryImplArrays implements ICustomerRepository {
     @Override
     public Customer findClient(String code) {
         for (Customer customer : ListCustomers) {
-            if (customer.getAtrCodigoCustomer().equals(code)) {
+            if (customer.getCodigoCustomer().equals(code)) {
                 return customer;
             }
         }
@@ -45,7 +45,7 @@ public class CustomerRepositoryImplArrays implements ICustomerRepository {
     @Override
     public String createClient(Customer customer) {
         ListCustomers.add(customer);
-        return customer.getAtrCodigoCustomer();
+        return customer.getCodigoCustomer();
     }
 
     /**

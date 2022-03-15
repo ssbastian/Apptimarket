@@ -304,14 +304,14 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
     private void processPostClient(Protocol protocolRequest) {
         Customer objCustomer = new Customer();
 
-        objCustomer.setAtrCodigoCustomer(protocolRequest.getParameters().get(0).getValue());
+        objCustomer.setCodigoCustomer(protocolRequest.getParameters().get(0).getValue());
         objCustomer.setID(protocolRequest.getParameters().get(1).getValue());
-        objCustomer.setAtrTipoIdCustomer(protocolRequest.getParameters().get(2).getValue());
+        objCustomer.setTipoIdCustomer(protocolRequest.getParameters().get(2).getValue());
         objCustomer.setNombre(protocolRequest.getParameters().get(3).getValue());
         objCustomer.setNumeroContacto(protocolRequest.getParameters().get(4).getValue());
-        objCustomer.setAtrEmailCustomer(protocolRequest.getParameters().get(5).getValue());
-        objCustomer.setAtrDireccionCustomer(protocolRequest.getParameters().get(6).getValue());
-        objCustomer.setAtrGeneroCustomer(protocolRequest.getParameters().get(7).getValue());
+        objCustomer.setEmailCustomer(protocolRequest.getParameters().get(5).getValue());
+        objCustomer.setDireccionCustomer(protocolRequest.getParameters().get(6).getValue());
+        objCustomer.setGeneroCustomer(protocolRequest.getParameters().get(7).getValue());
 
         String response = getServiceCustomer().createCustomer(objCustomer);
         respond(response);

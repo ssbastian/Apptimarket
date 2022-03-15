@@ -4,7 +4,7 @@ package co.unicauca.apptimarket.commons.domain;
  *
  * @author juan sebastian
  */
-public final class Customer extends clsCliente {  // HACER INTERFACE Y LUEGO HACER 3 CLASES QUE PARTAN DE ELLA
+public final class Customer extends clsCliente { 
 
     private String atrCodigoCustomer; //codigo de la persona en la aplicacion, diferente a identificacion.
     private String atrEmailCustomer;
@@ -32,44 +32,44 @@ public final class Customer extends clsCliente {  // HACER INTERFACE Y LUEGO HAC
         return "Módulo para la creación de un cliente";
     }
 
-    public String getAtrCodigoCustomer() {
+    public String getCodigoCustomer() {
         return atrCodigoCustomer;
     }
 
-    public void setAtrCodigoCustomer(String atrCodigoCustomer) {
+    public void setCodigoCustomer(String atrCodigoCustomer) {
         this.atrCodigoCustomer = atrCodigoCustomer;
     }
 
-    public String getAtrEmailCustomer() {
+    public String getEmailCustomer() {
         return atrEmailCustomer;
     }
 
-    public void setAtrEmailCustomer(String atrEmailCustomer) {
+    public void setEmailCustomer(String atrEmailCustomer) {
         this.atrEmailCustomer = atrEmailCustomer;
     }
 
-    public String getAtrDireccionCustomer() {
+    public String getDireccionCustomer() {
         return atrDireccionCustomer;
     }
 
-    public void setAtrDireccionCustomer(String atrDireccionCustomer) {
+    public void setDireccionCustomer(String atrDireccionCustomer) {
         this.atrDireccionCustomer = atrDireccionCustomer;
     }
 
    
-    public String getAtrTipoIdCustomer() {
+    public String getTipoIdCustomer() {
         return atrTipoIdCustomer;
     }
 
-    public void setAtrTipoIdCustomer(String atrTipoIdCustomer) {
+    public void setTipoIdCustomer(String atrTipoIdCustomer) {
         this.atrTipoIdCustomer = atrTipoIdCustomer;
     }
 
-    public String getAtrGeneroCustomer() {
+    public String getGeneroCustomer() {
         return atrGeneroCustomer;
     }
 
-    public void setAtrGeneroCustomer(String atrGeneroCustomer) {
+    public void setGeneroCustomer(String atrGeneroCustomer) {
         this.atrGeneroCustomer = atrGeneroCustomer;
     }
 
