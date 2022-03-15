@@ -1,5 +1,0 @@
-@startuml
-class co.unicauca.apptimarket.server.app.AgenciaViajesApplication
-class co.unicauca.apptimarket.server.infra.ApptiMarketServerSocket
-co.unicauca.apptimarket.server.app.AgenciaViajesApplication ..> co.unicauca.apptimarket.server.infra.ApptiMarketServerSocket
-@enduml
