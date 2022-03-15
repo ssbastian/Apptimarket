@@ -9,13 +9,11 @@ public class Cliente {  // HACER INTERFACE Y LUEGO HACER 3 CLASES QUE PARTAN DE 
     private String atrCodigoPerson;
     private String atrNombrePerson;
     private String atrEmailPersona;
-    private int atrTipo;   // 0 = administrador,  1 = cliente 2 = repartidor
-
-    public Cliente(String atrCodigoPerson, String atrNombrePerson, String atrEmailPersona, int atrTipo) {
+  
+    public Cliente(String atrCodigoPerson, String atrNombrePerson, String atrEmailPersona) {
         this.atrCodigoPerson = atrCodigoPerson;
         this.atrNombrePerson = atrNombrePerson;
         this.atrEmailPersona = atrEmailPersona;
-        this.atrTipo = atrTipo;
     }
 
     public String getAtrCodigoPerson() {
@@ -40,14 +38,6 @@ public class Cliente {  // HACER INTERFACE Y LUEGO HACER 3 CLASES QUE PARTAN DE 
 
     public void setAtrEmailPersona(String atrEmailPersona) {
         this.atrEmailPersona = atrEmailPersona;
-    }
-
-    public int getAtrTipo() {
-        return atrTipo;
-    }
-
-    public void setAtrTipo(int atrTipo) {
-        this.atrTipo = atrTipo;
     }
 
 }
