@@ -1,4 +1,5 @@
 package co.unicauca.apptimarket.server.infra;
+
 import co.unicauca.apptimarket.commons.domain.ListaProductos;
 import co.unicauca.serversocket.serversockettemplate.infra.ServerSocketTemplate;
 import co.unicauca.apptimarket.commons.domain.Product;
@@ -9,10 +10,12 @@ import co.unicauca.apptimarket.commons.infra.Protocol;
 import co.unicauca.apptimarket.commons.infra.Utilities;
 import co.unicauca.apptimarket.server.access.Factory;
 import co.unicauca.apptimarket.server.access.IAdministradorRepository;
+import co.unicauca.apptimarket.server.access.ICustomerRepository;
 import co.unicauca.apptimarket.server.domain.services.ProductService;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import co.unicauca.apptimarket.server.access.IProductRepository;
+import co.unicauca.apptimarket.server.domain.services.CustomerService;
 import co.unicauca.apptimarket.server.domain.services.clsAdministradorService;
 import java.util.List;
 
@@ -25,35 +28,50 @@ import java.util.List;
 public class ApptiMarketServerSocket extends ServerSocketTemplate {
 
     /**
-     * Servicio de clientes
+     * Servicio de productos
      */
     private ProductService service;
+
+    /**
+     * Servicio de Administradores
+     */
     private clsAdministradorService serviceAdmin;
+
+    /**
+     * Servicio de Customers
+     */
+    private CustomerService serviceCustomer;
 
     /**
      * Constructor
      */
     public ApptiMarketServerSocket() {
-        
+
     }
-    
-     /**
+
+    /**
      * Inicialización
+     *
      * @return este mismo objeto
      */
     @Override
-    protected ServerSocketTemplate init(){
+    protected ServerSocketTemplate init() {
         PORT = Integer.parseInt(Utilities.loadProperty("server.port"));
         // Se hace la inyección de dependencia al ProductService
         IProductRepository repository = Factory.getInstance().getRepository();
         this.setService(new ProductService(repository));
-       
+
         //:V
         IAdministradorRepository repository2 = Factory.getInstance().getRepositoryAdministrador();
         this.setServiceAdmin(new clsAdministradorService(repository2));
+        ICustomerRepository repository3 = Factory.getInstance().getRepositoryCustomer();
+        this.setServiceCustomer(new CustomerService(repository3));
         return this;
+
+       
+       
     }
-    
+
     /**
      * Procesar la solicitud que proviene de la aplicación cliente
      *
@@ -66,7 +84,7 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
     protected void processRequest(String requestJson) {
         // Convertir la solicitud a objeto Protocol para poderlo procesar
         Gson gson = new Gson();
-        System.out.println("PETICION__"+ requestJson);
+        System.out.println("PETICION__" + requestJson);
         Protocol protocolRequest = gson.fromJson(requestJson, Protocol.class);
         switch (protocolRequest.getResource()) {
             case "product":
@@ -84,10 +102,9 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
                     processPostCustomer(protocolRequest);
 
                 }
-                
-                
+
                 break;
-            
+
             case "administrador":
                 if (protocolRequest.getAction().equals("get")) {
                     // Consultar un customer
@@ -103,9 +120,9 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
                     processPostAdmin(protocolRequest);
 
                 }
-                
+
                 break;
-                
+
         }
 
     }
@@ -121,10 +138,8 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
         System.out.println("RECIBIO PETICION");
         Product customer = getService().findProduct(id);
         //List <Product> products = getService().findProducts(); 
-         ListaProductos product = new ListaProductos(getService().findProducts());
-        
-    
-        
+        ListaProductos product = new ListaProductos(getService().findProducts());
+
         if (customer != null) {
             String errorJson = generateNotFoundErrorJson();
             respond(errorJson);
@@ -133,8 +148,7 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
         }
     }
 
-    
-       private void processGetCustomer(Protocol protocolRequest) {
+    private void processGetCustomer(Protocol protocolRequest) {
         // Extraer la cedula del primer parámetro
         String id = protocolRequest.getParameters().get(0).getValue();
         Product customer = getService().findProduct(id);
@@ -144,15 +158,14 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
         } else {
             List<Product> a = getService().findProducts();
             for (Product custo : a) {
-                System.out.println("datos"+a.toString());
+                System.out.println("datos" + a.toString());
             }
-          ListaProductos product = new ListaProductos(a);
-            System.out.println("HHH"+ product);
+            ListaProductos product = new ListaProductos(a);
+            System.out.println("HHH" + product);
             respond(objectToJSON(customer));
         }
     }
-    
-    
+
     /**
      * Procesa la solicitud de agregar un customer
      *
@@ -164,7 +177,7 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
         product.setAtrCodigoProducto(protocolRequest.getParameters().get(0).getValue());
         product.setAtrNombre(protocolRequest.getParameters().get(1).getValue());
         product.setAtrPrecio(Double.parseDouble(protocolRequest.getParameters().get(2).getValue()));
-        product.setAtrExistencia(Integer.parseInt( protocolRequest.getParameters().get(3).getValue()));
+        product.setAtrExistencia(Integer.parseInt(protocolRequest.getParameters().get(3).getValue()));
         product.setAtrTipo(protocolRequest.getParameters().get(4).getValue());
 
         String response = getService().createProduct(product);
@@ -189,12 +202,11 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
 
         return errorsJson;
     }
-    
-    private void processGetAdmin(Protocol protocolRequest) 
-    {
+
+    private void processGetAdmin(Protocol protocolRequest) {
         String id = protocolRequest.getParameters().get(0).getValue();
         clsAdministrador objAdmin = getServiceAdmin().findAdministrador(id);
-      //error
+        //error
         if (objAdmin == null) {
             String errorJson = generateNotFoundErrorJson();
             respond(errorJson);
@@ -204,7 +216,7 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
                 System.out.println("datos" + objAdministradores.toString());
             }
             clsListaAdministradores administradores = new clsListaAdministradores(objAdministradores);
-            System.out.println("HHH"+ administradores);
+            System.out.println("HHH" + administradores);
             respond(objectToJSON(objAdmin));
         }
     }
@@ -213,15 +225,13 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    private void processPostAdmin(Protocol protocolRequest) 
-    {
+    private void processPostAdmin(Protocol protocolRequest) {
         clsAdministrador objAdmin = new clsAdministrador();
 
         objAdmin.setNombre(protocolRequest.getParameters().get(0).getValue());
         objAdmin.setID(protocolRequest.getParameters().get(1).getValue());
         objAdmin.setCodigo(protocolRequest.getParameters().get(2).getValue());
         objAdmin.setNumeroContacto(protocolRequest.getParameters().get(3).getValue());
-
 
         String response = getServiceAdmin().createAdministrador(objAdmin);
         respond(response);
@@ -241,7 +251,6 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
         this.service = service;
     }
 
-    
     /**
      * @return the service
      */
@@ -255,6 +264,9 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
     public void setServiceAdmin(clsAdministradorService prmService) {
         serviceAdmin = prmService;
     }
-    
-   
+
+    private void setServiceCustomer(CustomerService customerService) {
+       serviceCustomer = customerService;
+    }
+
 }

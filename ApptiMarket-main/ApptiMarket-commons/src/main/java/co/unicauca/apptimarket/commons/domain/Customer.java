@@ -4,7 +4,7 @@ package co.unicauca.apptimarket.commons.domain;
  *
  * @author juan sebastian
  */
-public class Customer extends clsCliente {  // HACER INTERFACE Y LUEGO HACER 3 CLASES QUE PARTAN DE ELLA
+public final class Customer extends clsCliente {  // HACER INTERFACE Y LUEGO HACER 3 CLASES QUE PARTAN DE ELLA
 
     private String atrCodigoCustomer; //codigo de la persona en la aplicacion, diferente a identificacion.
     private String atrEmailCustomer;
