@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package co.unicauca.apptimarket.client.presentation;
 
 /**
@@ -52,6 +49,11 @@ public class frmBienvenido extends javax.swing.JFrame {
         btnCliente.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         btnCliente.setForeground(new java.awt.Color(102, 153, 255));
         btnCliente.setText("Ingresar");
+        btnCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClienteActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel2.setText("Si eres cliente ... ");
@@ -103,7 +105,7 @@ public class frmBienvenido extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAdmin)
                     .addComponent(btnCliente))
                 .addGap(114, 114, 114)
@@ -125,6 +127,12 @@ public class frmBienvenido extends javax.swing.JFrame {
         new frmAdmin().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAdminActionPerformed
+
+    private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
+        // TODO add your handling code here:
+        new frmCliente().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnClienteActionPerformed
 
     /**
      * @param args the command line arguments
