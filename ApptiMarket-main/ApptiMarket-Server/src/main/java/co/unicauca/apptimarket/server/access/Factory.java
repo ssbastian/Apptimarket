@@ -5,7 +5,7 @@ import co.unicauca.apptimarket.commons.infra.Utilities;
 /**
  * Fabrica que se encarga de instanciar un repositorio concreto
  *
- * @author Libardo, Julio, :v
+ * @author Libardo, Julio
  */
 public class Factory {
 
@@ -29,8 +29,7 @@ public class Factory {
     }
 
     /**
-     * Método que crea una instancia concreta de la jerarquia
- IProductRepository
+     * Método que crea una instancia concreta de la jerarquia IProductRepository
      *
      * @return una clase hija de la abstracción IRepositorioClientes
      */
@@ -53,13 +52,13 @@ public class Factory {
         return result;
 
     }
-    
+
     public IAdministradorRepository getRepositoryAdministrador() {
         String type = Utilities.loadProperty("administrador.repository");
         if (type.isEmpty()) {
             type = "default";
         }
-        
+
         IAdministradorRepository cmpResult = null;
 
         switch (type) {
@@ -72,6 +71,23 @@ public class Factory {
         }
 
         return cmpResult;
+    }
 
+    public ICustomerRepository getRepositoryCustomer() {
+        String type = Utilities.loadProperty("customer.repository");
+        if (type.isEmpty()) {
+            type = "default";
+        }
+        ICustomerRepository cmpResult = null;
+
+        switch (type) {
+            case "default":
+                cmpResult = new CustomerRepositoryImplArrays();
+                break;
+            /*case "mysql":
+                result = new ProductRepositoryImplMysql();
+                break;*/
+        }
+        return cmpResult;
     }
 }
