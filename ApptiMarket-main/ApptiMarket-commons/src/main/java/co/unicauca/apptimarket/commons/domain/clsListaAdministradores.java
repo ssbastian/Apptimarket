@@ -1,4 +1,3 @@
-
 package co.unicauca.apptimarket.commons.domain;
 
 /**
@@ -7,31 +6,25 @@ package co.unicauca.apptimarket.commons.domain;
  */
 import java.util.List;
 
+public class clsListaAdministradores {
 
-public class clsListaAdministradores 
-{
     //para el json de productos
     private List<clsAdministrador> atrListaProductos;
 
-    public clsListaAdministradores(List<clsAdministrador> prmListaProductos) 
-    {
+    public clsListaAdministradores(List<clsAdministrador> prmListaProductos) {
         atrListaProductos = prmListaProductos;
     }
 
     public clsListaAdministradores() {
     }
-    
-    
+
     @Override
-    public String toString() 
-    {
+    public String toString() {
         return "ListaProductos{" + "listaProductos=" + atrListaProductos + '}';
     }
 
-    public List<clsAdministrador> getListaProductos() 
-    {
+    public List<clsAdministrador> getListaProductos() {
         return atrListaProductos;
     }
-    
-    
+
 }
