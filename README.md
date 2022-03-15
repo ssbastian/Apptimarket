@@ -13,7 +13,6 @@ Fabian David Marin Luna.
 
 ## Grupo de trabajo
 
-
 B
 
 ## Objetivo
