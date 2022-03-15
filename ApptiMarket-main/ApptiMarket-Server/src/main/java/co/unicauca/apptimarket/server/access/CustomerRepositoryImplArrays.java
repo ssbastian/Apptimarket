@@ -16,8 +16,8 @@ public class CustomerRepositoryImplArrays implements ICustomerRepository {
     public CustomerRepositoryImplArrays() {
         if (ListCustomers == null) {
             ListCustomers = new ArrayList();
-        } 
-        if (ListCustomers.size() == 0){ 
+        }
+        if (ListCustomers.size() == 0) {
             initArray();
         }
     }
@@ -36,10 +36,11 @@ public class CustomerRepositoryImplArrays implements ICustomerRepository {
      * cargar clientes en el sistema
      */
     private void initArray() {
-     
+        ListCustomers.add(new Customer("1", "106171011", "CC", "Andrea Pantoja", "3145878752", "andrea@hotmail.com", "calle 17 la Esmeralda", "Femenino"));
+        ListCustomers.add(new Customer("1", "106183187", "CC", "Gabriela Muñoz", "3155878752", "gaby@hotmail.com", "calle 5 lomas g", "Femenino"));
+        ListCustomers.add(new Customer("1", "1061187", "CC", "Lionel Alvarez", "31558878752", "lionel@hotmail.com", "calle 6 centro", "Masculino"));
         
-        
-          /*customers.add(new Product("98000001", "Andrea", "Sanchez", "Calle 14 No 11-12 Popayan", "3145878752", "andrea@hotmail.com", "Femenino"));
+        /*customers.add(new Product("98000001", "Andrea", "Sanchez", "Calle 14 No 11-12 Popayan", "3145878752", "andrea@hotmail.com", "Femenino"));
         customers.add(new Product("98000002", "Libardo", "Pantoja", "Santa Barbar Popayan", "3141257845", "libardo@gmail.com", "Masculino"));
         customers.add(new Product("98000003", "Carlos", "Pantoja", "Santa Barbar Popayan", "3141257846", "carlos@gmail.com", "Masculino"));
         customers.add(new Product("98000004", "Fernanda", "Arevalo", "Calle 16 No 12-12 Popayan", "3154562133", "fercha@hotmail.com", "Femenino"));
@@ -50,6 +51,4 @@ public class CustomerRepositoryImplArrays implements ICustomerRepository {
         customers.add(new Product("98000009", "Alberto", "Mendez Bravo", "Calle 12 No 12-12 Popayan", "3154575845", "fer@hotmail.com", "Masculino"));
         customers.add(new Product("98000010", "Alexander", "Ponce Yepes", "Calle 12 No 12-12 Popayan", "3154575845", "fer@hotmail.com", "Masculino"));*/
     }
-    }
-
-
+}
