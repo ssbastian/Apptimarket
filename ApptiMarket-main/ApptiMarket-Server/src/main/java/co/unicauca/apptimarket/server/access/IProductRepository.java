@@ -1,11 +1,10 @@
 package co.unicauca.apptimarket.server.access;
 
-import co.unicauca.apptimarket.commons.domain.Customer;
 import co.unicauca.apptimarket.commons.domain.Product;
 import java.util.List;
 
 /**
- *
+ * Interface del respositorio de clientes
  * @author Libardo Pantoja
  */
 public interface IProductRepository {
@@ -16,7 +15,7 @@ public interface IProductRepository {
      */
     
     public Product findProduct(String code);
-    public String createProduct(Product Client);
+    public String createProduct(Product product);
     public List<Product> findProducts();  //retornar lista de productos
 
 }

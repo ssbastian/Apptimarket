@@ -64,4 +64,20 @@ public class Factory {
         
         return cmpResult;
     }
+    
+    public IClientAccess getClientService()
+    {
+        IClientAccess cmpResult = null;
+        
+        //String cmpType = Utilities.loadProperty("client.service");
+        String cmpType = "default";
+        switch(cmpType)
+        {
+            case "default":
+                cmpResult = new ApptiMarketAccessImplSocketsClient();
+                break;
+        }
+        
+        return cmpResult;
+    }
 }

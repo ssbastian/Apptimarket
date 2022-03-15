@@ -16,7 +16,7 @@ import co.unicauca.apptimarket.server.access.IProductRepository;
 public class ProductService {
 
     /**
-     * Repositorio de productos
+     * Repositorio de clientes
      */
     IProductRepository repo;
 
@@ -30,9 +30,9 @@ public class ProductService {
     }
 
     /**
-     * Buscar un Producto
+     * Buscar un cliente
      *
-     * @param code codigo en la aplicacion
+     * @param code cedula
      * @return objeto tipo Product
      */
     public synchronized Product findProduct(String code) {
