@@ -11,5 +11,5 @@ import co.unicauca.apptimarket.commons.domain.Product;
 public interface ICustomerRepository {
 
     public Customer findClient(String code);
-    public String createClient(Product product);
+    public String createClient(Customer customer);
 }
