@@ -357,6 +357,8 @@ public class frmAdmin extends javax.swing.JFrame {
         } catch (Exception ex) {
             successMessage(ex.getMessage(), "Atención");
         }
+        
+        
     }//GEN-LAST:event_btnAgregarProductoActionPerformed
 
     private void btnCancelarBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarBuscarActionPerformed
