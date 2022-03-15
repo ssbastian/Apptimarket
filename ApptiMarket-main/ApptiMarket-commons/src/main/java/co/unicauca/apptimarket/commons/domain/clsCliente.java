@@ -7,7 +7,7 @@ package co.unicauca.apptimarket.commons.domain;
 public abstract class clsCliente {  // HACER INTERFACE Y LUEGO HACER 3 CLASES QUE PARTAN DE ELLA
 
     private String atrNombre;
-    private String atrID; //identificacion
+    private String atrID;
     private String atrNumeroContacto;
     
     public clsCliente()
