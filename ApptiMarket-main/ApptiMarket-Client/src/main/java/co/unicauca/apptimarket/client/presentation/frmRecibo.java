@@ -2,8 +2,10 @@
 package co.unicauca.apptimarket.client.presentation;
 
 import co.unicauca.apptimarket.client.domain.ClienteRapido;
+import static co.unicauca.apptimarket.client.infra.Messages.successMessage;
 import co.unicauca.apptimarket.commons.domain.carritoDTO;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,14 +21,43 @@ public class frmRecibo extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
+    
+    DefaultTableModel objDatos = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
+    
     public frmRecibo(ArrayList <carritoDTO> prmPago, ClienteRapido prmClienteRapido) {
         initComponents();
         setLocationRelativeTo(null);
+        
+        tblListaComprada.setModel(objDatos);
+        objDatos.setNumRows(0);
         
         txtNombreComprador.setText(prmClienteRapido.getAtrNombre().trim());
         txtIDComprador.setText(prmClienteRapido.getAtrID().trim());
         txtDireccion.setText(prmClienteRapido.getAtrDireccion().trim());
         txtTelefono.setText(prmClienteRapido.getAtrTelefono().trim());
+        
+        try {
+
+            for (int count = 0; count < prmPago.size(); count++) {
+                objDatos.setColumnIdentifiers(new Object[]{"Codigo", "Nombre", "Precio", "Cantidad"});
+                objDatos.insertRow(count, new Object[]{prmPago.get(count).getCodigo(), prmPago.get(count).getNombre(),
+                    prmPago.get(count).getPrecio(), prmPago.get(count).getCantidad()});
+            }
+
+            // System.out.println("Desde Carrito\n Código: " + codigo + ", nombre: " + nombre + ", precio: " + precio);
+            tblListaComprada.setRowHeight(1, 30);
+
+        } catch (Exception ex) {
+            successMessage(ex.getMessage(), "Atención");
+            return;
+        }
+        
+        
     }
 
     /**
@@ -47,12 +78,11 @@ public class frmRecibo extends javax.swing.JFrame {
         txtDireccion = new javax.swing.JTextField();
         txtNombreComprador = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txtTelefono = new javax.swing.JTextField();
         jTextField8 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblListaComprada = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
-        txtTelefono1 = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -64,38 +94,36 @@ public class frmRecibo extends javax.swing.JFrame {
 
         jLabel5.setText("Nombre comprador:");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(50, 100, 95, 14);
+        jLabel5.setBounds(50, 100, 111, 16);
 
         jLabel6.setText("ID comprador:");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(70, 130, 69, 14);
+        jLabel6.setBounds(70, 130, 78, 16);
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel7.setText("TOTAL A PAGAR ($):");
         getContentPane().add(jLabel7);
         jLabel7.setBounds(10, 375, 240, 32);
         getContentPane().add(txtIDComprador);
-        txtIDComprador.setBounds(180, 130, 230, 20);
+        txtIDComprador.setBounds(180, 130, 230, 24);
 
         jLabel8.setText("Dirección de domicilio:");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(40, 160, 104, 14);
+        jLabel8.setBounds(40, 160, 125, 16);
         getContentPane().add(txtDireccion);
-        txtDireccion.setBounds(180, 160, 230, 20);
+        txtDireccion.setBounds(180, 160, 230, 24);
         getContentPane().add(txtNombreComprador);
-        txtNombreComprador.setBounds(180, 100, 232, 20);
+        txtNombreComprador.setBounds(180, 100, 232, 24);
 
         jLabel9.setText("Número teléfono comprador:");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(10, 190, 138, 14);
-        getContentPane().add(txtTelefono);
-        txtTelefono.setBounds(180, 220, 230, 20);
+        jLabel9.setBounds(10, 190, 158, 16);
 
         jTextField8.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         getContentPane().add(jTextField8);
-        jTextField8.setBounds(254, 372, 249, 38);
+        jTextField8.setBounds(254, 372, 249, 40);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblListaComprada.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -106,16 +134,16 @@ public class frmRecibo extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblListaComprada);
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(10, 258, 673, 96);
 
         jLabel10.setText("Infotmación de la compra");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(20, 220, 121, 14);
-        getContentPane().add(txtTelefono1);
-        txtTelefono1.setBounds(180, 190, 230, 20);
+        jLabel10.setBounds(250, 230, 139, 16);
+        getContentPane().add(txtTelefono);
+        txtTelefono.setBounds(180, 190, 230, 24);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -164,12 +192,11 @@ public class frmRecibo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JTable tblListaComprada;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtIDComprador;
     private javax.swing.JTextField txtNombreComprador;
     private javax.swing.JTextField txtTelefono;
-    private javax.swing.JTextField txtTelefono1;
     // End of variables declaration//GEN-END:variables
 }
