@@ -241,7 +241,7 @@ public class frmCarrito extends javax.swing.JFrame {
 
     private void btnCPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCPagarActionPerformed
         // TODO add your handling code here:
-        
+
         new frmPago(objList).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCPagarActionPerformed
@@ -253,11 +253,11 @@ public class frmCarrito extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        int fila=tblCarrito.getSelectedRow();
-        if(fila>=0){
+        int fila = tblCarrito.getSelectedRow();
+        if (fila >= 0) {
             objCarrito.removeRow(fila);
             objList.remove(fila);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Seleccionar Fila");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
