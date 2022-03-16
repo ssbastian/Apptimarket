@@ -4,6 +4,7 @@ co\unicauca\apptimarket\commons\domain\Buy.class
 co\unicauca\apptimarket\commons\infra\Utilities.class
 co\unicauca\apptimarket\commons\domain\ListaProductos.class
 co\unicauca\apptimarket\commons\domain\Customer.class
+co\unicauca\apptimarket\commons\domain\carritoDTO.class
 co\unicauca\apptimarket\commons\infra\Protocol.class
 co\unicauca\apptimarket\commons\domain\BuyList.class
 co\unicauca\apptimarket\commons\domain\User.class

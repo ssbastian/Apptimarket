@@ -1,4 +1,3 @@
-
 package co.unicauca.apptimarket.client.presentation;
 
 import co.unicauca.apptimarket.client.access.Factory;
@@ -6,6 +5,8 @@ import co.unicauca.apptimarket.client.access.IProductAccess;
 import co.unicauca.apptimarket.client.domain.services.ProductService;
 import static co.unicauca.apptimarket.client.infra.Messages.successMessage;
 import co.unicauca.apptimarket.commons.domain.Product;
+import co.unicauca.apptimarket.commons.domain.carritoDTO;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,17 +25,14 @@ public class frmCliente extends javax.swing.JFrame {
     public frmCliente() {
         initComponents();
         setLocationRelativeTo(null);
-        
+
         SpinnerNumberModel modelSpinner = new SpinnerNumberModel();
         modelSpinner.setMinimum(0);
         spnCantidad.setModel(modelSpinner);
-        
+
         this.verTablaRegProduct(); //mostrar la tabla de registrar producto desde que se abre la pestaña
     }
 
-    
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -228,84 +226,90 @@ public class frmCliente extends javax.swing.JFrame {
 
     String codigo, nombre, precio;
     int cantidad;
-    
+
     DefaultTableModel objModelo = new DefaultTableModel();
-    
+
+    ArrayList<carritoDTO> objList = new ArrayList<carritoDTO>();
     private void tblRegProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRegProductMouseClicked
         // TODO add your handling code here:
         int seleccionar = tblRegProduct.rowAtPoint(evt.getPoint());
-        
+
         jTextField1.setText((String.valueOf(tblRegProduct.getValueAt(seleccionar, 1))));
         jTextField2.setText((String.valueOf(tblRegProduct.getValueAt(seleccionar, 2))));
         jTextField3.setText((String.valueOf(tblRegProduct.getValueAt(seleccionar, 3))));
         jTextField1.setEnabled(false);
         jTextField2.setEnabled(false);
         jTextField3.setEnabled(false);
+
         codigo = jTextField1.getText().trim();
         nombre = jTextField2.getText().trim();
         precio = jTextField3.getText().trim();
-        
+
+     
         System.out.println("Desde cliente\n Código: " + codigo + ", nombre: " + nombre + ", precio: " + precio);
-    
+       
     }//GEN-LAST:event_tblRegProductMouseClicked
 
     private void btnAgregarCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCarritoActionPerformed
         // TODO add your handling code here:
-        frmCarrito carrito = new frmCarrito();
-        cantidad = (int)spnCantidad.getValue();
-        carrito.verTablaCarrito(codigo, nombre, precio, cantidad);
         
+        cantidad = (int) spnCantidad.getValue();
+        carritoDTO obj = new carritoDTO(codigo, nombre, precio,cantidad);
+        //carrito.verTablaCarrito(codigo, nombre, precio, cantidad);
+         objList.add(obj); //se anade a la lista de carrito los productos
+
     }//GEN-LAST:event_btnAgregarCarritoActionPerformed
 
     private void btnRealizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarCompraActionPerformed
         // TODO add your handling code here:
-        new frmCarrito(codigo, nombre, precio, cantidad).setVisible(true);
+        //new frmCarrito(codigo, nombre, precio, cantidad).setVisible(true);
+        
+        new frmCarrito(objList).setVisible(true);
     }//GEN-LAST:event_btnRealizarCompraActionPerformed
 
-    
-    DefaultTableModel objRegProduct = new DefaultTableModel(){
+    DefaultTableModel objRegProduct = new DefaultTableModel() {
         @Override
-        public boolean isCellEditable(int row, int column){
+        public boolean isCellEditable(int row, int column) {
             return false;
         }
     };
-    
+
     //Mostrar datos en la tabla del pabel Registrar producto
-    private void verTablaRegProduct() {                                       
+    private void verTablaRegProduct() {
         // TODO add your handling code here:
         tblRegProduct.setModel(objRegProduct);
         objRegProduct.setNumRows(0);
-        
+
         IProductAccess objService = Factory.getInstance().getProductService();
-        
+
         ProductService objProductService = new ProductService(objService);
-        
+
         Product objProduct;
-        
+
         System.out.println("MIRANDO LISTA");
-        
+
         try {
-            List <Product> varObjProducts = objProductService.findProducts();
+            List<Product> varObjProducts = objProductService.findProducts();
             objRegProduct.setColumnIdentifiers(new Object[]{"idx", "Codigo", "Nombre", "Precio", "Existencias", "Tipo"});
-            
+
             for (int count = 0; count < varObjProducts.size(); count++) {
                 objRegProduct.insertRow(count, new Object[]{count, varObjProducts.get(count).getAtrCodigoProducto(),
                     varObjProducts.get(count).getAtrNombre(), varObjProducts.get(count).getAtrPrecio(),
                     varObjProducts.get(count).getAtrExistencia(), varObjProducts.get(count).getAtrTipo()});
             }
-            
+
             for (int count = varObjProducts.size(); count < varObjProducts.size() + 5; count++) {
                 objRegProduct.insertRow(count, new Object[]{""});
             }
-            
+
             tblRegProduct.setRowHeight(1, 30);
-        
+
         } catch (Exception ex) {
             successMessage(ex.getMessage(), "Atención");
             return;
         }
-    }     
-   
+    }
+
     /**
      * @param args the command line arguments
      */

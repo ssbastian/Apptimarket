@@ -1,4 +1,3 @@
-
 package co.unicauca.apptimarket.client.presentation;
 
 import co.unicauca.apptimarket.client.access.Factory;
@@ -6,6 +5,8 @@ import co.unicauca.apptimarket.client.access.IProductAccess;
 import co.unicauca.apptimarket.client.domain.services.ProductService;
 import static co.unicauca.apptimarket.client.infra.Messages.successMessage;
 import co.unicauca.apptimarket.commons.domain.Product;
+import co.unicauca.apptimarket.commons.domain.carritoDTO;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,61 +16,99 @@ import javax.swing.table.DefaultTableModel;
  */
 public class frmCarrito extends javax.swing.JFrame {
 
+    ArrayList<carritoDTO> objList;
+
     /**
      * Creates new form frmCarrito
      */
+    //ArrayList<String> 
     public frmCarrito() {
         initComponents();
         setLocationRelativeTo(null);
     }
-    
+
     public frmCarrito(String prmCodigo, String prmNombre, String prmPrecio, int prmCantidad) {
         initComponents();
         setLocationRelativeTo(null);
         this.verTablaCarrito(prmCodigo, prmNombre, prmPrecio, prmCantidad);
     }
-    
-    DefaultTableModel objCarrito = new DefaultTableModel(){
+
+    DefaultTableModel objCarrito = new DefaultTableModel() {
         @Override
-        public boolean isCellEditable(int row, int column){
+        public boolean isCellEditable(int row, int column) {
             return false;
         }
     };
-    
-    //Mostrar datos en la tabla del pabel Registrar producto
-    private void verTablaCarrito() {  
-        
+
+    frmCarrito(ArrayList<carritoDTO> objList) {
+        initComponents();
+        setLocationRelativeTo(null);
+        this.objList = objList;
+        this.verTablaCarrito();
     }
-    public void verTablaCarrito(String codigo, String nombre,String precio,int cantidad) {                                       
+
+    //Mostrar datos en la tabla del pabel Registrar producto
+    private void verTablaCarrito() {
         // TODO add your handling code here:
         tblCarrito.setModel(objCarrito);
         objCarrito.setNumRows(0);
-        
+
         IProductAccess objService = Factory.getInstance().getProductService();
-        
+
         ProductService objProductService = new ProductService(objService);
-        
+
         Product objProduct;
-        
+
+        System.out.println("MIRANDO LISTA DEL CARRITO");
+
+        try {
+
+            for (int count = 0; count < objList.size(); count++) {
+                objCarrito.setColumnIdentifiers(new Object[]{"Codigo", "Nombre", "Precio", "Cantidad"});
+                objCarrito.insertRow(count, new Object[]{objList.get(count).getCodigo(), objList.get(count).getNombre(),
+                    objList.get(count).getPrecio(), objList.get(count).getCantidad()});
+            }
+
+            // System.out.println("Desde Carrito\n Código: " + codigo + ", nombre: " + nombre + ", precio: " + precio);
+            tblCarrito.setRowHeight(1, 30);
+
+        } catch (Exception ex) {
+            successMessage(ex.getMessage(), "Atención");
+            return;
+        }
+
+    }
+
+    public void verTablaCarrito(String codigo, String nombre, String precio, int cantidad) {
+        // TODO add your handling code here:
+        tblCarrito.setModel(objCarrito);
+        objCarrito.setNumRows(0);
+
+        IProductAccess objService = Factory.getInstance().getProductService();
+
+        ProductService objProductService = new ProductService(objService);
+
+        Product objProduct;
+
         System.out.println("MIRANDO LISTA DEL CARRITO");
         int count;
         try {
-            
-            for(count = 0; count < 10; count ++)
-            {
+
+            for (count = 0; count < 10; count++) {
                 objCarrito.setColumnIdentifiers(new Object[]{"Codigo", "Nombre", "Precio", "Cantidad"});
                 objCarrito.insertRow(count, new Object[]{codigo, nombre, precio, cantidad});
             }
-            
+
             System.out.println("Desde Carrito\n Código: " + codigo + ", nombre: " + nombre + ", precio: " + precio);
-            
+
             tblCarrito.setRowHeight(1, 30);
-        
+
         } catch (Exception ex) {
             successMessage(ex.getMessage(), "Atención");
             return;
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
