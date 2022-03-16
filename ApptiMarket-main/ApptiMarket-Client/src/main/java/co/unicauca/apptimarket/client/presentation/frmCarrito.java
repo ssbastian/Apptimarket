@@ -228,7 +228,8 @@ public class frmCarrito extends javax.swing.JFrame {
 
     private void btnCPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCPagarActionPerformed
         // TODO add your handling code here:
-        new frmPago().setVisible(true);
+        
+        new frmPago(objList).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCPagarActionPerformed
 
