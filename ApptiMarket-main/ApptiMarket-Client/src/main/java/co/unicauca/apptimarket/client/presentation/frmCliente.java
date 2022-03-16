@@ -311,6 +311,9 @@ public class frmCliente extends javax.swing.JFrame {
         jTextField1.setText((String.valueOf(tblRegProduct.getValueAt(seleccionar, 1))));
         jTextField2.setText((String.valueOf(tblRegProduct.getValueAt(seleccionar, 2))));
         jTextField3.setText((String.valueOf(tblRegProduct.getValueAt(seleccionar, 3))));
+        jTextField1.setEnabled(false);
+        jTextField2.setEnabled(false);
+        jTextField3.setEnabled(false);
     
     }//GEN-LAST:event_tblRegProductMouseClicked
 

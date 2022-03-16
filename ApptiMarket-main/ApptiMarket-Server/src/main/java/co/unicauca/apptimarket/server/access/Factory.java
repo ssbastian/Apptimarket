@@ -90,4 +90,22 @@ public class Factory {
         }
         return cmpResult;
     }
+    
+    public IBuyRepository getRepositoryBuy() {
+        String type = Utilities.loadProperty("customer.repository");
+        if (type.isEmpty()) {
+            type = "default";
+        }
+        IBuyRepository cmpResult = null;
+
+        switch (type) {
+            case "default":
+                cmpResult = new BuyRepositoryArrays();
+                break;
+            /*case "mysql":
+                result = new ProductRepositoryImplMysql();
+                break;*/
+        }
+        return cmpResult;
+    }
 }

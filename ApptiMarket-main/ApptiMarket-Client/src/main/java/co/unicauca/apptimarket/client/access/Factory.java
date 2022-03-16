@@ -64,4 +64,20 @@ public class Factory {
         
         return cmpResult;
     }
+    
+    public IBuyAccess getBuyService()
+    {
+        IBuyAccess cmpResult = null;
+        
+        //String cmpType = Utilities.loadProperty("administrador.service");
+        String cmpType = "default";
+        switch(cmpType)
+        {
+            case "default":
+                cmpResult = new ApptiMarketAccessImplSocketsBuy();
+                break;
+        }
+        
+        return cmpResult;
+    }
 }
