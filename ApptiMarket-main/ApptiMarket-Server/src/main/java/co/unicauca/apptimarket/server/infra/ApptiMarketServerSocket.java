@@ -1,5 +1,7 @@
 package co.unicauca.apptimarket.server.infra;
 
+import co.unicauca.apptimarket.commons.domain.Buy;
+import co.unicauca.apptimarket.commons.domain.BuyList;
 import co.unicauca.apptimarket.commons.domain.Customer;
 import co.unicauca.apptimarket.commons.domain.ListaProductos;
 import co.unicauca.serversocket.serversockettemplate.infra.ServerSocketTemplate;
@@ -16,6 +18,7 @@ import co.unicauca.apptimarket.server.domain.services.ProductService;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import co.unicauca.apptimarket.server.access.IProductRepository;
+import co.unicauca.apptimarket.server.domain.services.BuyService;
 import co.unicauca.apptimarket.server.domain.services.CustomerService;
 import co.unicauca.apptimarket.server.domain.services.clsAdministradorService;
 import java.util.List;
@@ -42,6 +45,8 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
      * Servicio de Customers
      */
     private CustomerService serviceCustomer;
+    
+    private BuyService serviceBuy;
 
     /**
      * Constructor
@@ -133,6 +138,24 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
                     processPostClient(protocolRequest);
                 }
 
+                break;
+            
+            case "buy":
+                if (protocolRequest.getAction().equals("get")) {
+                    // Consultar un customer
+                    processGetBuy(protocolRequest);
+                }
+
+                if (protocolRequest.getAction().equals("get/lista")) {
+                    // Consultar un customer
+                    processGetListaBuy(protocolRequest);
+                }
+                if (protocolRequest.getAction().equals("post")) {
+                    // Agregar un customer    
+                    processPostBuy(protocolRequest);
+
+                }
+                
                 break;
         }
 
@@ -317,5 +340,60 @@ public class ApptiMarketServerSocket extends ServerSocketTemplate {
         String response = getServiceCustomer().createCustomer(objCustomer);
         respond(response);
 
+    }
+
+    
+    public BuyService getServiceBuy()
+    {
+        return serviceBuy;
+    }
+    
+    public void setServiceBuy(BuyService prmServiceBuy)
+    {
+        serviceBuy = prmServiceBuy;
+    }
+    private void processGetBuy(Protocol protocolRequest) {
+        String id = protocolRequest.getParameters().get(0).getValue();
+        Buy buy = getServiceBuy().findBuy(id);
+        //error
+        if (buy == null) {
+            String errorJson = generateNotFoundErrorJson();
+            respond(errorJson);
+        } else {
+            List<Buy> buys = getServiceBuy().findBuys();
+            for (Buy custo : buys) {
+                System.out.println("datos" + buys.toString());
+            }
+            BuyList listBuy = new BuyList(buys);
+            System.out.println("HHH" + listBuy);
+            respond(objectToJSON(buy));
+        }
+    }
+
+    private void processGetListaBuy(Protocol protocolRequest) {
+        String id = protocolRequest.getParameters().get(0).getValue();
+        System.out.println("RECIBIO PETICION");
+        Buy buy = getServiceBuy().findBuy(id);
+        List <Buy> buys = getServiceBuy().findBuys(); 
+        //ListaProductos product = new ListaProductos(getService().findProducts());
+        
+        if (buy != null) {
+            String errorJson = generateNotFoundErrorJson();
+            respond(errorJson);
+        } else {
+            respond(objectToJSON(buys));
+        }
+    }
+
+    private void processPostBuy(Protocol protocolRequest) {   
+        Buy buy = new Buy();
+ 
+        buy.setCodigoCompra(protocolRequest.getParameters().get(0).getValue());
+        buy.setNumeroCompra(protocolRequest.getParameters().get(1).getValue());
+        buy.setTotal(protocolRequest.getParameters().get(2).getValue());
+        buy.setDescripcion(protocolRequest.getParameters().get(3).getValue());
+        
+        String response = getServiceBuy().createbBuy(buy);
+        respond(response);
     }
 }

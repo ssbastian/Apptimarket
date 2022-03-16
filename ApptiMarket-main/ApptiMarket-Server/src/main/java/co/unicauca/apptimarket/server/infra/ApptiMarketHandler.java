@@ -5,11 +5,13 @@
  */
 package co.unicauca.apptimarket.server.infra;
 
+import co.unicauca.apptimarket.commons.domain.Buy;
 import co.unicauca.serversocket.serversockettemplate.infra.ServerHandler;
 import co.unicauca.apptimarket.commons.domain.Product;
 import co.unicauca.apptimarket.commons.domain.clsAdministrador;
 import co.unicauca.apptimarket.commons.infra.JsonError;
 import co.unicauca.apptimarket.commons.infra.Protocol;
+import co.unicauca.apptimarket.server.domain.services.BuyService;
 import co.unicauca.apptimarket.server.domain.services.ProductService;
 import co.unicauca.apptimarket.server.domain.services.clsAdministradorService;
 import com.google.gson.Gson;
@@ -27,6 +29,7 @@ public class ApptiMarketHandler extends ServerHandler {
      */
     private static ProductService service;
     private static clsAdministradorService atrServiceAdministrador;
+    private static BuyService serviceBuy;
     
      /**
      * Procesar la solicitud que proviene de la aplicación cliente
@@ -67,7 +70,7 @@ public class ApptiMarketHandler extends ServerHandler {
                     processGetAdministrador(protocolRequest);
                 }
                 
-                if (protocolRequest.getAction().equals("get/")) {
+                if (protocolRequest.getAction().equals("get")) {
                     // Consultar un customer
                     processGetAdministrador(protocolRequest);
                 }
@@ -76,6 +79,24 @@ public class ApptiMarketHandler extends ServerHandler {
                     // Agregar un customer    
                     processPostAdministrador(protocolRequest);
                 }
+                break;
+            case "buy":
+                if(protocolRequest.getAction().equals("get"))
+                {
+                    processGetBuy(protocolRequest);
+                }
+                
+                if (protocolRequest.getAction().equals("get")) {
+                    // Consultar un customer
+                    processGetBuy(protocolRequest);
+                }
+
+                if (protocolRequest.getAction().equals("post")) {
+                    // Agregar un customer    
+                    processPostBuy(protocolRequest);
+                }
+                break;
+                    
               //otro caso seria para otra tabla
         }
 
@@ -199,5 +220,41 @@ public class ApptiMarketHandler extends ServerHandler {
 
     public void setServiceAdministrador(clsAdministradorService prmService) {
         atrServiceAdministrador = prmService;
+    }
+
+    public BuyService getServiceBuy()
+    {
+        return serviceBuy;
+    }
+    
+    public void setServiceBuy(BuyService prmServiceBuy)
+    {
+        serviceBuy = prmServiceBuy;
+    }
+    
+    private void processGetBuy(Protocol protocolRequest) 
+    {
+        String code = protocolRequest.getParameters().get(0).getValue();
+        Buy buy = serviceBuy.findBuy(code);
+        List<Buy> ListBuys = serviceBuy.findBuys();
+        if (buy == null) {
+            String errorJson = generateNotFoundErrorJson();
+            respond(errorJson);
+        } else {
+            respond(objectToJSON(buy));
+        }
+    }
+
+    private void processPostBuy(Protocol protocolRequest) {
+        Buy buy = new Buy();
+       
+        
+        buy.setCodigoCompra(protocolRequest.getParameters().get(0).getValue());
+        buy.setNumeroCompra(protocolRequest.getParameters().get(1).getValue());
+        buy.setTotal(protocolRequest.getParameters().get(2).getValue());
+        buy.setDescripcion(protocolRequest.getParameters().get(3).getValue());
+
+        String response = getServiceBuy().createbBuy(buy);
+        respond(response);
     }
 }

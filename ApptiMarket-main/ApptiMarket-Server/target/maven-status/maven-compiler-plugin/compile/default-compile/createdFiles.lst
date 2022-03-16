@@ -1,7 +1,10 @@
 co\unicauca\apptimarket\server\app\AgenciaViajesApplication.class
+co\unicauca\apptimarket\server\domain\services\BuyService.class
 co\unicauca\apptimarket\server\access\AdministradorRepositoryArrays.class
+co\unicauca\apptimarket\server\access\IBuyRepository.class
 co\unicauca\apptimarket\server\domain\services\CustomerService.class
 co\unicauca\apptimarket\server\infra\ApptiMarketHandler.class
+co\unicauca\apptimarket\server\access\BuyRepositoryArrays.class
 co\unicauca\apptimarket\server\access\Factory.class
 co\unicauca\apptimarket\server\access\IProductRepository.class
 co\unicauca\apptimarket\server\access\ProductRepositoryImplArrays.class
