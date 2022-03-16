@@ -27,7 +27,7 @@ public class frmCliente extends javax.swing.JFrame {
         setLocationRelativeTo(null);
 
         SpinnerNumberModel modelSpinner = new SpinnerNumberModel();
-        modelSpinner.setMinimum(0);
+        modelSpinner.setMinimum(1);
         spnCantidad.setModel(modelSpinner);
 
         this.verTablaRegProduct(); //mostrar la tabla de registrar producto desde que se abre la pestaña
