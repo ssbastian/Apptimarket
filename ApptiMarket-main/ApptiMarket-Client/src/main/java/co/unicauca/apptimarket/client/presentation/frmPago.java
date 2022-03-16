@@ -166,6 +166,7 @@ public class frmPago extends javax.swing.JFrame {
         objClienteRapido.setAtrDireccion(txtDireccion.getText());
         objClienteRapido.setAtrTelefono(txtTelefono.getText());
         
+        /* :v */
         new frmRecibo(atrPago, objClienteRapido).setVisible(true);
         warningMessage("Pago Exitoso", "Pago Exitoso");
         new frmCliente().setVisible(true);
