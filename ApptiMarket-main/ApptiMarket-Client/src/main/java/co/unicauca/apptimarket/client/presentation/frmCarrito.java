@@ -8,6 +8,7 @@ import co.unicauca.apptimarket.commons.domain.Product;
 import co.unicauca.apptimarket.commons.domain.carritoDTO;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -125,6 +126,7 @@ public class frmCarrito extends javax.swing.JFrame {
         btnCVolver = new javax.swing.JButton();
         btnCPagar = new javax.swing.JButton();
         btnCSalir = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -168,6 +170,14 @@ public class frmCarrito extends javax.swing.JFrame {
             }
         });
 
+        btnEliminar.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -177,9 +187,11 @@ public class frmCarrito extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnCVolver)
-                        .addGap(195, 195, 195)
+                        .addGap(79, 79, 79)
+                        .addComponent(btnEliminar)
+                        .addGap(95, 95, 95)
                         .addComponent(btnCPagar)
-                        .addGap(164, 164, 164)
+                        .addGap(80, 80, 80)
                         .addComponent(btnCSalir))
                     .addComponent(jLabel1)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 761, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -196,7 +208,8 @@ public class frmCarrito extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCVolver)
                     .addComponent(btnCPagar)
-                    .addComponent(btnCSalir))
+                    .addComponent(btnCSalir)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(147, Short.MAX_VALUE))
         );
 
@@ -237,6 +250,16 @@ public class frmCarrito extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnCSalirActionPerformed
 
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        int fila=tblCarrito.getSelectedRow();
+        if(fila>=0){
+            objCarrito.removeRow(fila);
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccionar Fila");
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -276,6 +299,7 @@ public class frmCarrito extends javax.swing.JFrame {
     private javax.swing.JButton btnCPagar;
     private javax.swing.JButton btnCSalir;
     private javax.swing.JButton btnCVolver;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
