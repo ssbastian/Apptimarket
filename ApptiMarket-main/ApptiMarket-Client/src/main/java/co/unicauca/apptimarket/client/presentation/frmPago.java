@@ -169,7 +169,7 @@ public class frmPago extends javax.swing.JFrame {
         /* :v */
         new frmRecibo().setVisible(true);
         //warningMessage("Pago Exitoso", "Pago Exitoso");
-        new frmCliente().setVisible(true);
+        //new frmCliente().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnConfirmarPagoActionPerformed
 
