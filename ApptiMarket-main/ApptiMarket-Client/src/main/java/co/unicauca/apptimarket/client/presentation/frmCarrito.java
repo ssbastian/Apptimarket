@@ -256,6 +256,7 @@ public class frmCarrito extends javax.swing.JFrame {
         int fila=tblCarrito.getSelectedRow();
         if(fila>=0){
             objCarrito.removeRow(fila);
+            objList.remove(fila);
         }else{
             JOptionPane.showMessageDialog(null, "Seleccionar Fila");
         }
