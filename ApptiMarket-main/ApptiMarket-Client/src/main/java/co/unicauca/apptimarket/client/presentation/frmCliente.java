@@ -45,12 +45,6 @@ public class frmCliente extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblModelo = new javax.swing.JTable();
-        btnCancelar = new javax.swing.JButton();
-        btnVer = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -68,73 +62,6 @@ public class frmCliente extends javax.swing.JFrame {
         btnRealizarCompra = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        tblModelo.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tblModelo);
-
-        btnCancelar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
-            }
-        });
-
-        btnVer.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        btnVer.setText("Visualizar");
-        btnVer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVerActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        jLabel1.setText("ApptiMarket");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(418, 418, 418)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnVer, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
-                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
-        );
-
-        jTabbedPane1.addTab("Inicio", jPanel1);
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         jLabel2.setText("Registrar comprar");
@@ -294,67 +221,32 @@ public class frmCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
-        new frmBienvenido().setVisible(true);
-        this.dispose();
-        
-        
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
+    String codigo, nombre, precio;
+    int cantidad;
     
     DefaultTableModel objModelo = new DefaultTableModel();
     
-    private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
-        
-// TODO add your handling code here:
-        tblModelo.setModel(objModelo);
-        objModelo.setNumRows(0);
-        
-        IProductAccess objService = Factory.getInstance().getProductService();
-        
-        ProductService objProductService = new ProductService(objService);
-        
-        Product objProduct;
-        
-        System.out.println("MIRANDO LISTA");
-        
-        try {
-            List <Product> varObjProducts = objProductService.findProducts();
-            objModelo.setColumnIdentifiers(new Object[]{"idx", "Codigo", "Nombre", "Precio", "Existencias", "Tipo"});
-            
-            for (int count = 0; count < varObjProducts.size(); count++) {
-                objModelo.insertRow(count, new Object[]{count, varObjProducts.get(count).getAtrCodigoProducto(),
-                    varObjProducts.get(count).getAtrNombre(), varObjProducts.get(count).getAtrPrecio(),
-                    varObjProducts.get(count).getAtrExistencia(), varObjProducts.get(count).getAtrTipo()});
-            }
-            
-            for (int count = varObjProducts.size(); count < varObjProducts.size() + 5; count++) {
-                objModelo.insertRow(count, new Object[]{""});
-            }
-            
-            tblModelo.setRowHeight(1, 30);
-        
-        } catch (Exception ex) {
-            successMessage(ex.getMessage(), "Atención");
-            return;
-        }
-    }//GEN-LAST:event_btnVerActionPerformed
-
     private void tblRegProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRegProductMouseClicked
         // TODO add your handling code here:
         int seleccionar = tblRegProduct.rowAtPoint(evt.getPoint());
+        
         jTextField1.setText((String.valueOf(tblRegProduct.getValueAt(seleccionar, 1))));
         jTextField2.setText((String.valueOf(tblRegProduct.getValueAt(seleccionar, 2))));
         jTextField3.setText((String.valueOf(tblRegProduct.getValueAt(seleccionar, 3))));
         jTextField1.setEnabled(false);
         jTextField2.setEnabled(false);
         jTextField3.setEnabled(false);
+        codigo = jTextField1.getText().trim();
+        nombre = jTextField2.getText().trim();
+        precio = jTextField3.getText().trim();
     
     }//GEN-LAST:event_tblRegProductMouseClicked
 
     private void btnAgregarCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCarritoActionPerformed
         // TODO add your handling code here:
+        frmCarrito carrito = new frmCarrito();
+        cantidad = (int)spnCantidad.getValue();
+        carrito.verTablaCarrito(codigo, nombre, precio, cantidad);
         
     }//GEN-LAST:event_btnAgregarCarritoActionPerformed
 
@@ -439,26 +331,20 @@ public class frmCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarCarrito;
-    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCancelarProducto;
     private javax.swing.JButton btnRealizarCompra;
-    private javax.swing.JButton btnVer;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JSpinner spnCantidad;
-    private javax.swing.JTable tblModelo;
     private javax.swing.JTable tblRegProduct;
     // End of variables declaration//GEN-END:variables
 }

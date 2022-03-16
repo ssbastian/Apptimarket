@@ -1,6 +1,14 @@
 
 package co.unicauca.apptimarket.client.presentation;
 
+import co.unicauca.apptimarket.client.access.Factory;
+import co.unicauca.apptimarket.client.access.IProductAccess;
+import co.unicauca.apptimarket.client.domain.services.ProductService;
+import static co.unicauca.apptimarket.client.infra.Messages.successMessage;
+import co.unicauca.apptimarket.commons.domain.Product;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author WINDOWS
@@ -12,8 +20,47 @@ public class frmCarrito extends javax.swing.JFrame {
      */
     public frmCarrito() {
         initComponents();
+        setLocationRelativeTo(null);
+        this.verTablaCarrito();
     }
-
+    
+    
+    DefaultTableModel objCarrito = new DefaultTableModel(){
+        @Override
+        public boolean isCellEditable(int row, int column){
+            return false;
+        }
+    };
+    
+    //Mostrar datos en la tabla del pabel Registrar producto
+    private void verTablaCarrito() {  
+        
+    }
+    public void verTablaCarrito(String codigo, String nombre,String precio,int cantidad) {                                       
+        // TODO add your handling code here:
+        tblCarrito.setModel(objCarrito);
+        objCarrito.setNumRows(0);
+        
+        IProductAccess objService = Factory.getInstance().getProductService();
+        
+        ProductService objProductService = new ProductService(objService);
+        
+        Product objProduct;
+        
+        System.out.println("MIRANDO LISTA");
+        int count = 0;
+        try {
+            objCarrito.setColumnIdentifiers(new Object[]{"Codigo", "Nombre", "Precio", "Cantidad"});
+            objCarrito.insertRow(count, new Object[]{codigo, nombre, precio, cantidad});
+            count++;
+            
+            tblCarrito.setRowHeight(1, 30);
+        
+        } catch (Exception ex) {
+            successMessage(ex.getMessage(), "Atención");
+            return;
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -23,17 +70,65 @@ public class frmCarrito extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblCarrito = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        tblCarrito.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tblCarrito);
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel1.setText("Carrito de compras.");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(36, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 761, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jLabel1)
+                .addGap(61, 61, 61)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(222, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 849, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 517, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(415, Short.MAX_VALUE))
         );
 
         pack();
@@ -75,5 +170,9 @@ public class frmCarrito extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tblCarrito;
     // End of variables declaration//GEN-END:variables
 }
