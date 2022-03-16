@@ -122,6 +122,9 @@ public class frmCarrito extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblCarrito = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        btnCVolver = new javax.swing.JButton();
+        btnCPagar = new javax.swing.JButton();
+        btnCSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -141,6 +144,30 @@ public class frmCarrito extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setText("Carrito de compras.");
 
+        btnCVolver.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        btnCVolver.setText("Volver");
+        btnCVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCVolverActionPerformed(evt);
+            }
+        });
+
+        btnCPagar.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        btnCPagar.setText("Pagar");
+        btnCPagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCPagarActionPerformed(evt);
+            }
+        });
+
+        btnCSalir.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        btnCSalir.setText("Salir");
+        btnCSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -148,6 +175,12 @@ public class frmCarrito extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(36, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnCVolver)
+                        .addGap(195, 195, 195)
+                        .addComponent(btnCPagar)
+                        .addGap(164, 164, 164)
+                        .addComponent(btnCSalir))
                     .addComponent(jLabel1)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 761, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32))
@@ -159,7 +192,12 @@ public class frmCarrito extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(61, 61, 61)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(222, Short.MAX_VALUE))
+                .addGap(52, 52, 52)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCVolver)
+                    .addComponent(btnCPagar)
+                    .addComponent(btnCSalir))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -176,11 +214,28 @@ public class frmCarrito extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(415, Short.MAX_VALUE))
+                .addContainerGap(397, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCVolverActionPerformed
+        // TODO add your handling code here:
+        new frmCliente().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCVolverActionPerformed
+
+    private void btnCPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCPagarActionPerformed
+        // TODO add your handling code here:
+        new frmPago().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCPagarActionPerformed
+
+    private void btnCSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCSalirActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnCSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,6 +273,9 @@ public class frmCarrito extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCPagar;
+    private javax.swing.JButton btnCSalir;
+    private javax.swing.JButton btnCVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
