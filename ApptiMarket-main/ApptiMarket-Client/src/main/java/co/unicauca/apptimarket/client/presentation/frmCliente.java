@@ -27,7 +27,7 @@ public class frmCliente extends javax.swing.JFrame {
         setLocationRelativeTo(null);
 
         SpinnerNumberModel modelSpinner = new SpinnerNumberModel();
-        modelSpinner.setMinimum(1);
+        modelSpinner.setMinimum(0);
         spnCantidad.setModel(modelSpinner);
 
         this.verTablaRegProduct(); //mostrar la tabla de registrar producto desde que se abre la pestaña
@@ -225,7 +225,7 @@ public class frmCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     String codigo, nombre, precio;
-    int cantidad;
+    private int cantidad;
 
     DefaultTableModel objModelo = new DefaultTableModel();
 
@@ -253,8 +253,24 @@ public class frmCliente extends javax.swing.JFrame {
     private void btnAgregarCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCarritoActionPerformed
         // TODO add your handling code here:
         
+        
+        
         cantidad = (int) spnCantidad.getValue();
         carritoDTO obj = new carritoDTO(codigo, nombre, precio,cantidad);
+        
+        IProductAccess service = Factory.getInstance().getProductService();
+        
+        ProductService serviceProduct = new ProductService(service);
+        
+        try {
+            Product product = serviceProduct.findProduct(codigo);
+            
+            product.setAtrExistencia(5);
+            
+        } catch (Exception ex) {
+            Logger.getLogger(frmCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         //carrito.verTablaCarrito(codigo, nombre, precio, cantidad);
          objList.add(obj); //se anade a la lista de carrito los productos
 
@@ -310,6 +326,11 @@ public class frmCliente extends javax.swing.JFrame {
         }
     }
 
+    
+    public int getCantidad()
+    {
+        return (cantidad = (int) spnCantidad.getValue());
+    }
     /**
      * @param args the command line arguments
      */

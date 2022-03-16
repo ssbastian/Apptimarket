@@ -160,6 +160,7 @@ public class frmPago extends javax.swing.JFrame {
     
     private void btnConfirmarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarPagoActionPerformed
         // TODO add your handling code here:
+       
         
         objClienteRapido.setAtrNombre(txtNombreCompleto.getText());
         objClienteRapido.setAtrID(txtID.getText());
@@ -167,7 +168,7 @@ public class frmPago extends javax.swing.JFrame {
         objClienteRapido.setAtrTelefono(txtTelefono.getText());
         
         /* :v */
-        new frmRecibo().setVisible(true);
+        new frmRecibo(atrPago, objClienteRapido).setVisible(true);
         //warningMessage("Pago Exitoso", "Pago Exitoso");
         new frmCliente().setVisible(true);
         this.dispose();

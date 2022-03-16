@@ -1,6 +1,7 @@
 package co.unicauca.apptimarket.client.presentation;
 
 import co.unicauca.apptimarket.client.access.Factory;
+import co.unicauca.apptimarket.client.access.IBuyAccess;
 import co.unicauca.apptimarket.client.access.IProductAccess;
 import co.unicauca.apptimarket.client.domain.services.ProductService;
 import static co.unicauca.apptimarket.client.infra.Messages.successMessage;
@@ -241,7 +242,9 @@ public class frmCarrito extends javax.swing.JFrame {
 
     private void btnCPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCPagarActionPerformed
         // TODO add your handling code here:
-
+        
+        
+        
         new frmPago(objList).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCPagarActionPerformed

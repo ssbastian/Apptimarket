@@ -33,6 +33,8 @@ public class frmRecibo extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         
+        double cmpTotal = 0;
+        
         tblListaComprada.setModel(objDatos);
         objDatos.setNumRows(0);
         
@@ -47,8 +49,13 @@ public class frmRecibo extends javax.swing.JFrame {
                 objDatos.setColumnIdentifiers(new Object[]{"Codigo", "Nombre", "Precio", "Cantidad"});
                 objDatos.insertRow(count, new Object[]{prmPago.get(count).getCodigo(), prmPago.get(count).getNombre(),
                     prmPago.get(count).getPrecio(), prmPago.get(count).getCantidad()});
+                
+                cmpTotal += prmPago.get(count).getCantidad() * Double.parseDouble( prmPago.get(count).getPrecio());
+                
             }
 
+            
+            txtPagar.setText(cmpTotal + "");
             // System.out.println("Desde Carrito\n Código: " + codigo + ", nombre: " + nombre + ", precio: " + precio);
             tblListaComprada.setRowHeight(1, 30);
 
@@ -78,11 +85,12 @@ public class frmRecibo extends javax.swing.JFrame {
         txtDireccion = new javax.swing.JTextField();
         txtNombreComprador = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        txtPagar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblListaComprada = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
         txtTelefono = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -119,9 +127,9 @@ public class frmRecibo extends javax.swing.JFrame {
         getContentPane().add(jLabel9);
         jLabel9.setBounds(10, 190, 158, 16);
 
-        jTextField8.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        getContentPane().add(jTextField8);
-        jTextField8.setBounds(254, 372, 249, 40);
+        txtPagar.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        getContentPane().add(txtPagar);
+        txtPagar.setBounds(254, 372, 249, 40);
 
         tblListaComprada.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -144,6 +152,8 @@ public class frmRecibo extends javax.swing.JFrame {
         jLabel10.setBounds(250, 230, 139, 16);
         getContentPane().add(txtTelefono);
         txtTelefono.setBounds(180, 190, 230, 24);
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(10, 10, 860, 520);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -191,12 +201,13 @@ public class frmRecibo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JTable tblListaComprada;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtIDComprador;
     private javax.swing.JTextField txtNombreComprador;
+    private javax.swing.JTextField txtPagar;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }
