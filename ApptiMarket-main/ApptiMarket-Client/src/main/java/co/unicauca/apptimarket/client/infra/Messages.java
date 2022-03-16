@@ -20,6 +20,7 @@ public class Messages {
         JOptionPane.showMessageDialog(null, mns, title, JOptionPane.DEFAULT_OPTION, new ImageIcon("./src/recursos/warning.png"));
     }
 
+    
     /**
      * Genera un emergente de error
      *
