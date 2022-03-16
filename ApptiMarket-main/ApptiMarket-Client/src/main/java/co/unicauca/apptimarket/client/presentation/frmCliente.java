@@ -121,6 +121,11 @@ public class frmCliente extends javax.swing.JFrame {
 
         btnRealizarCompra.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btnRealizarCompra.setText("Realizar compra");
+        btnRealizarCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRealizarCompraActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -239,6 +244,8 @@ public class frmCliente extends javax.swing.JFrame {
         codigo = jTextField1.getText().trim();
         nombre = jTextField2.getText().trim();
         precio = jTextField3.getText().trim();
+        
+        System.out.println("Desde cliente\n Código: " + codigo + ", nombre: " + nombre + ", precio: " + precio);
     
     }//GEN-LAST:event_tblRegProductMouseClicked
 
@@ -249,6 +256,11 @@ public class frmCliente extends javax.swing.JFrame {
         carrito.verTablaCarrito(codigo, nombre, precio, cantidad);
         
     }//GEN-LAST:event_btnAgregarCarritoActionPerformed
+
+    private void btnRealizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarCompraActionPerformed
+        // TODO add your handling code here:
+        new frmCarrito(codigo, nombre, precio, cantidad).setVisible(true);
+    }//GEN-LAST:event_btnRealizarCompraActionPerformed
 
     
     DefaultTableModel objRegProduct = new DefaultTableModel(){

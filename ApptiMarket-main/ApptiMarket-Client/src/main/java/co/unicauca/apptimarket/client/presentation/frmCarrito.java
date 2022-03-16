@@ -21,9 +21,13 @@ public class frmCarrito extends javax.swing.JFrame {
     public frmCarrito() {
         initComponents();
         setLocationRelativeTo(null);
-        this.verTablaCarrito();
     }
     
+    public frmCarrito(String prmCodigo, String prmNombre, String prmPrecio, int prmCantidad) {
+        initComponents();
+        setLocationRelativeTo(null);
+        this.verTablaCarrito(prmCodigo, prmNombre, prmPrecio, prmCantidad);
+    }
     
     DefaultTableModel objCarrito = new DefaultTableModel(){
         @Override
@@ -47,12 +51,17 @@ public class frmCarrito extends javax.swing.JFrame {
         
         Product objProduct;
         
-        System.out.println("MIRANDO LISTA");
-        int count = 0;
+        System.out.println("MIRANDO LISTA DEL CARRITO");
+        int count;
         try {
-            objCarrito.setColumnIdentifiers(new Object[]{"Codigo", "Nombre", "Precio", "Cantidad"});
-            objCarrito.insertRow(count, new Object[]{codigo, nombre, precio, cantidad});
-            count++;
+            
+            for(count = 0; count < 10; count ++)
+            {
+                objCarrito.setColumnIdentifiers(new Object[]{"Codigo", "Nombre", "Precio", "Cantidad"});
+                objCarrito.insertRow(count, new Object[]{codigo, nombre, precio, cantidad});
+            }
+            
+            System.out.println("Desde Carrito\n Código: " + codigo + ", nombre: " + nombre + ", precio: " + precio);
             
             tblCarrito.setRowHeight(1, 30);
         

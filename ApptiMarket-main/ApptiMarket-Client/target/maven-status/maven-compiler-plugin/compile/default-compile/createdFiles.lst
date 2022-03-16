@@ -1,4 +1,5 @@
 co\unicauca\apptimarket\client\presentation\GUIMenu.class
+co\unicauca\apptimarket\client\presentation\frmCarrito$2.class
 co\unicauca\apptimarket\client\domain\User.class
 co\unicauca\apptimarket\client\presentation\frmCliente$2.class
 co\unicauca\apptimarket\client\presentation\GUIAdministrador$7.class
@@ -21,6 +22,7 @@ co\unicauca\apptimarket\client\presentation\GUICustomizerPackage$7.class
 co\unicauca\apptimarket\client\access\IAdministradorAccess.class
 co\unicauca\apptimarket\client\presentation\GUIAddCityDialogDialog$4.class
 co\unicauca\apptimarket\client\access\clsApptiMarketAccessImplSocketsAdmi.class
+co\unicauca\apptimarket\client\presentation\frmCarrito$1.class
 co\unicauca\apptimarket\client\presentation\GUIAdministrador$8.class
 co\unicauca\apptimarket\client\presentation\GUIMenu$6.class
 co\unicauca\apptimarket\client\presentation\GUIAllInOnePackage$1.class
@@ -68,6 +70,7 @@ co\unicauca\apptimarket\client\presentation\GUILogin$3.class
 co\unicauca\apptimarket\client\presentation\GUIMenu$4.class
 co\unicauca\apptimarket\client\presentation\frmCliente$3.class
 co\unicauca\apptimarket\client\presentation\GUIAddCityDialogDialog$4$1.class
+co\unicauca\apptimarket\client\presentation\frmCarrito.class
 co\unicauca\apptimarket\client\presentation\GUIAdministrador$1.class
 co\unicauca\apptimarket\client\presentation\frmBienvenido$4.class
 co\unicauca\apptimarket\client\presentation\GUIAddCityDialogDialog$2.class
