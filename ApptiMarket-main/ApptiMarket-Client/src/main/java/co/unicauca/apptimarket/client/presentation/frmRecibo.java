@@ -18,7 +18,7 @@ public class frmRecibo extends javax.swing.JFrame {
      */
     public frmRecibo() {
         initComponents();
-        setLocationRelativeTo(null);
+        //setLocationRelativeTo(null);
     }
     
     
@@ -84,44 +84,34 @@ public class frmRecibo extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         txtTelefono = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel1.setText("Factura de compra");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(188, 11, 325, 47);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 11, -1, -1));
 
         jLabel5.setText("Nombre comprador:");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(50, 100, 111, 16);
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
 
         jLabel6.setText("ID comprador:");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(70, 130, 78, 16);
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel7.setText("TOTAL A PAGAR ($):");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(10, 375, 240, 32);
-        getContentPane().add(txtIDComprador);
-        txtIDComprador.setBounds(180, 130, 230, 24);
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 375, -1, -1));
+        getContentPane().add(txtIDComprador, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 230, -1));
 
         jLabel8.setText("Dirección de domicilio:");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(40, 160, 125, 16);
-        getContentPane().add(txtDireccion);
-        txtDireccion.setBounds(180, 160, 230, 24);
-        getContentPane().add(txtNombreComprador);
-        txtNombreComprador.setBounds(180, 100, 232, 24);
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
+        getContentPane().add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 230, -1));
+        getContentPane().add(txtNombreComprador, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 232, -1));
 
         jLabel9.setText("Número teléfono comprador:");
-        getContentPane().add(jLabel9);
-        jLabel9.setBounds(10, 190, 158, 16);
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
 
         jTextField8.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        getContentPane().add(jTextField8);
-        jTextField8.setBounds(254, 372, 249, 40);
+        getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(254, 372, 249, -1));
 
         tblListaComprada.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -136,14 +126,11 @@ public class frmRecibo extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblListaComprada);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(10, 258, 673, 96);
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 258, 673, 96));
 
         jLabel10.setText("Infotmación de la compra");
-        getContentPane().add(jLabel10);
-        jLabel10.setBounds(250, 230, 139, 16);
-        getContentPane().add(txtTelefono);
-        txtTelefono.setBounds(180, 190, 230, 24);
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, -1, -1));
+        getContentPane().add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 230, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
