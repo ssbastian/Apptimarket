@@ -23,7 +23,10 @@ public class frmRecibo extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         
-        
+        txtNombreComprador.setText(prmClienteRapido.getAtrNombre().trim());
+        txtIDComprador.setText(prmClienteRapido.getAtrID().trim());
+        txtDireccion.setText(prmClienteRapido.getAtrDireccion().trim());
+        txtTelefono.setText(prmClienteRapido.getAtrTelefono().trim());
     }
 
     /**
